@@ -1,3 +1,10 @@
+package lab_n2.demo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.*;
+
 @RestController
 public class VagaController {
     private List<Vaga> vagas;
@@ -7,11 +14,11 @@ public class VagaController {
         vagas.add(new Vaga(1,"Dev Backend","Aos amantes de java","Spring Boot, Java, SQL"));
     }
 
-    @GetMapping("/mackenzie/alunos")
+    @GetMapping("/mackenzie/vagas")
     public List<Vaga> getvagas() {
         return vagas;
     }
-    @GetMapping("/mackenzie/alunos/{id}")
+    @GetMapping("/mackenzie/vagas/{id}")
     public Vaga getVaga(@PathVariable long id) {
         for(Vaga v : vagas) {
             if(id == v.getId()){
@@ -20,7 +27,7 @@ public class VagaController {
         }
         return null;
     }
-    @PostMapping("/mackenzie/alunos")
+    @PostMapping("/mackenzie/vagas")
     public Vaga create(@RequestBody Vaga vaga) {
         long maior = 0;
         for(Vaga v : vagas) {

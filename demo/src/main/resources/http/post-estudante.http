@@ -2,7 +2,7 @@ POST http://localhost:8080/mackenzie/alunos
 Content-Type: application/json
 
 {
-    "nome": "Lucas",
-    "matricula": "10435675",
-    "curso": "sistemas de informação"
+    "nome": "Teste",
+    "matricula": "12345689",
+    "curso": "arquitetura"
 }

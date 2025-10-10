@@ -1,3 +1,5 @@
+package lab_n2.demo;
+
 public class Vaga {
     private long id;
     private String titulo;

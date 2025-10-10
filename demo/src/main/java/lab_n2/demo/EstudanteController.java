@@ -1,3 +1,10 @@
+package lab_n2.demo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.*;
+
 @RestController
 public class EstudanteController {
     private List<Estudante> estudantes;
@@ -32,5 +39,29 @@ public class EstudanteController {
         e.setId(maior + 1);
         estudantes.add(e);
         return e;
+    }
+
+    @DeleteMapping("/mackenzie/alunos/{id}")
+    public boolean deleteEstudante(@PathVariable long id) {
+        for(Estudante e:estudantes) {
+            if(id==e.getId()){
+                estudantes.remove(e);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @PutMapping("/mackenzie/alunos/{id}")
+    public boolean updateEstudante(@PathVariable long id, @RequestBody Estudante estudante) {
+        for(Estudante e:estudantes) {
+            if(id==e.getId()){
+                e.setNome(estudante.getNome());
+                e.setCurso(estudante.getCurso());
+                e.setMatricula(estudante.getMatricula());
+                return true;
+            }
+        }
+        return false;
     }
 }

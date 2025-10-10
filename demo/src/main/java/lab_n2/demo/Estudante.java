@@ -1,4 +1,4 @@
-
+package lab_n2.demo;
 
 public class Estudante {
     private long id;

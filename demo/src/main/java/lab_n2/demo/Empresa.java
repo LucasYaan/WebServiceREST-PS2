@@ -1,3 +1,5 @@
+package lab_n2.demo;
+
 public class Empresa {
     private long id;
     private String nome;
