@@ -3,18 +3,20 @@ package lab_n2.demo;
 public class Estudante {
     private long id;
     private String nome;
-    private int matricula;
-    private String curso;
+    private String email;
+    private String nascimento;
+    private int anoIngresso;
 
     public Estudante() {
         
     }
 
-    public Estudante(long id, String nome, int matricula, String curso) {
+    public Estudante(long id, String nome, String email, String nascimento, int anoIngresso) {
         this.id = id;
         this.nome = nome;
-        this.matricula = matricula;
-        this.curso = curso;
+        this.email = email;
+        this.nascimento = nascimento;
+        this.anoIngresso = anoIngresso;
     }
 
     public long getId() {
@@ -33,20 +35,27 @@ public class Estudante {
         this.nome = nome;
     }
 
-    public int getMatricula() {
-        return matricula;
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setMatricula(int matricula) {
-        this.matricula = matricula;
+    public int getNascimento() {
+        return nascimento;
     }
 
-    public String getCurso() {
-        return curso;
+    public void setNascimento(int nascimento) {
+        this.nascimento = nascimento;
     }
 
-    public void setCurso(String curso) {
-        this.curso = curso;
+    public int getAnoIngresso() {
+        return anoIngresso;
+    }
+
+    public void setAnoIngresso(String anoIngresso) {
+        this.anoIngresso = anoIngresso;
     }
 
     
