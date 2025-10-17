@@ -42,11 +42,11 @@ public class Estudante {
         this.email = email;
     }
 
-    public int getNascimento() {
+    public String getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(int nascimento) {
+    public void setNascimento(String nascimento) {
         this.nascimento = nascimento;
     }
 
@@ -54,7 +54,7 @@ public class Estudante {
         return anoIngresso;
     }
 
-    public void setAnoIngresso(String anoIngresso) {
+    public void setAnoIngresso(int anoIngresso) {
         this.anoIngresso = anoIngresso;
     }
 
