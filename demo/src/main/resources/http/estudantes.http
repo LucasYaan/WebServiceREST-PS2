@@ -1,0 +1,25 @@
+GET http://localhost:8080/mackenzie/estudantes
+###
+GET http://localhost:8080/mackenzie/estudantes/1
+###
+POST http://localhost:8080/mackenzie/estudantes
+Content-Type: application/json
+
+{
+    "nome": "Eduardo Teste",
+    "email": "teste@estudanteteste.com",
+    "nascimento": "1999-05-10",
+    "anoIngresso": "1999"
+}
+###
+PUT http://localhost:8080/mackenzie/estudantes/1
+Content-Type: application/json
+
+{
+    "nome": "Updated",
+    "email": "teste@vagateste.com",
+    "nascimento": "1998-04-15",
+    "anoIngresso": "2000"
+}
+###
+DELETE http://localhost:8080/mackenzie/estudantes/1

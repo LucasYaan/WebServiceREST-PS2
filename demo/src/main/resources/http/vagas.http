@@ -1,0 +1,28 @@
+GET http://localhost:8080/mackenzie/vagas
+###
+GET http://localhost:8080/mackenzie/vagas/1
+###
+POST http://localhost:8080/mackenzie/vagas
+Content-Type: application/json
+
+{
+    "titulo": "title",
+    "descricao": "decricao da vaga",
+    "publicacao": "teste@vagateste.com",
+    "ativo": "true",
+    "idEmpresa": "1"
+}
+###
+PUT http://localhost:8080/mackenzie/vagas/1
+Content-Type: application/json
+
+{
+    "nome": "Updated",
+    "titulo": "title",
+    "descricao": "decricao da vaga",
+    "publicacao": "teste@vagateste.com",
+    "ativo": "true",
+    "idEmpresa": "1"
+}
+###
+DELETE http://localhost:8080/mackenzie/vagas/1
