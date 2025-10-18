@@ -1,8 +1,0 @@
-PUT http://localhost:8080/mackenzie/alunos/4
-Content-Type: application/json
-
-{
-    "nome": "Updated",
-    "matricula": "0000090",
-    "curso": "gastronomia"
-}

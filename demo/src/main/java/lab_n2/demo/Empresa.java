@@ -1,7 +1,13 @@
 package lab_n2.demo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+@Entity
 public class Empresa {
-    private long id;
+    @Id @GeneratedValue
+    private Long id;
     private String nome;
     private String cnpj;
     private String emailContato;
@@ -10,18 +16,18 @@ public class Empresa {
         
     }
 
-    public Empresa(long id, String nome, String cnpj, String emailContato) {
+    public Empresa(Long id, String nome, String cnpj, String emailContato) {
         this.id = id;
         this.nome = nome;
         this.cnpj = cnpj;
         this.emailContato = emailContato;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

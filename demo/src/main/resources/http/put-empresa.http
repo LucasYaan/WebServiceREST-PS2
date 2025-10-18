@@ -1,8 +1,0 @@
-PUT http://localhost:8080/mackenzie/empresas/6
-Content-Type: application/json
-
-{
-    "nome": "Updated",
-    "cnpj": "99.000.000/0001-00",
-    "emailContato": "teste@empresateste.com"
-}

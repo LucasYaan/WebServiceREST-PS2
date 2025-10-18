@@ -1,7 +1,13 @@
 package lab_n2.demo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+@Entity
 public class Estudante {
-    private long id;
+    @Id @GeneratedValue
+    private Long id;
     private String nome;
     private String email;
     private String nascimento;
@@ -11,7 +17,7 @@ public class Estudante {
         
     }
 
-    public Estudante(long id, String nome, String email, String nascimento, int anoIngresso) {
+    public Estudante(Long id, String nome, String email, String nascimento, int anoIngresso) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -19,11 +25,11 @@ public class Estudante {
         this.anoIngresso = anoIngresso;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,8 +1,0 @@
-POST http://localhost:8080/mackenzie/alunos
-Content-Type: application/json
-
-{
-    "nome": "Teste",
-    "matricula": "12345689",
-    "curso": "arquitetura"
-}

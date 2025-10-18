@@ -1,8 +1,0 @@
-POST http://localhost:8080/mackenzie/empresas
-Content-Type: application/json
-
-{
-    "nome": "Empresa Teste",
-    "cnpj": "00.000.000/0001-00",
-    "emailContato": "teste@empresateste.com"
-}
