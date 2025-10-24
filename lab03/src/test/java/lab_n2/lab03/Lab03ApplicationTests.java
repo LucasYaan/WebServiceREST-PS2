@@ -1,10 +1,10 @@
-package ps2.teorian2;
+package lab_n2.lab03;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Teorian2ApplicationTests {
+class Lab03ApplicationTests {
 
 	@Test
 	void contextLoads() {

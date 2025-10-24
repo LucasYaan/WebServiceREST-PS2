@@ -1,13 +1,13 @@
-package ps2.teorian2;
+package lab_n2.lab03;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Teorian2Application {
+public class Lab03Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Teorian2Application.class, args);
+		SpringApplication.run(Lab03Application.class, args);
 	}
 
 }

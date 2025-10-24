@@ -1,0 +1,19 @@
+import jakarta.persistence.*;
+import lombok.Data;
+import java.util.List;
+
+@Data
+@Entity
+public class Area {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // verificar isso
+    private Long id;
+
+    private String nome;
+
+    @ManyToMany(mappedBy = "areasInteresse")  // verificar isso
+    private List<Estudante> estudantes;
+
+    @OneToMany(mappedBy = "area")  // verificar isso
+    private List<VagaEstagio> vagas;
+}
