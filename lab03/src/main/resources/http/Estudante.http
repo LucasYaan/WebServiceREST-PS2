@@ -1,0 +1,32 @@
+GET /mackenzie/estudantes
+###
+GET /mackenzie/estudantes/1
+###
+DELETE /mackenzie/estudantes/1
+###
+PUT /mackenzie/estudantes/1
+Content-Type: application/json
+{
+    "nome": "Estudante de Teste Atualizado"
+}
+###
+POST /mackenzie/estudantes
+Content-Type: application/json
+{
+    "nome": "Nova Estudante",
+    "email": "novaestudante@mackenzie.com"
+}
+###
+PUT /mackenzie/estudantes/1/inscricoes
+Content-Type: application/json
+{
+    "dataInscricao": "2023-03-15",
+    "status": "Pendente",
+    "mensagemApresentacao": "Estou interessado nesta vaga."
+}
+###
+PUT /mackenzie/estudantes/1/areas
+Content-Type: application/json
+{
+    "nome": "Nova Área de Interesse"
+}

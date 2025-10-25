@@ -1,0 +1,12 @@
+GET /mackenzie/areas
+###
+GET /mackenzie/areas/3
+###
+DELETE /mackenzie/areas/3
+###
+PUT /mackenzie/areas/2
+Content-Type: application/json
+{
+    "nome": "Area de Teste Atualizada"
+}
+###

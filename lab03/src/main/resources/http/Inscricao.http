@@ -1,0 +1,23 @@
+GET /mackenzie/inscricoes
+###
+GET /mackenzie/inscricoes/1
+###
+DELETE /mackenzie/inscricoes/1
+###
+PUT /mackenzie/inscricoes/1
+Content-Type: application/json
+{
+    "DataInscricao": "2023-03-15",
+    "Status": "Pendente",
+    "MensagemApresentacao": "Estou interessado nesta vaga."
+}
+###
+POST /mackenzie/inscricoes
+Content-Type: application/json
+{
+    "Titulo": "Nova inscricao",
+    "Descricao": "Descrição da nova inscricao",
+    "DataPublicacao": "2023-03-15",
+    "Ativo": true
+}
+

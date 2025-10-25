@@ -1,0 +1,28 @@
+GET /mackenzie/empresas
+###
+GET /mackenzie/empresas/1
+###
+DELETE /mackenzie/empresas/1
+###
+PUT /mackenzie/empresas/1
+Content-Type: application/json
+{
+    "nome": "Empresa de Teste Atualizada"
+}
+###
+POST /mackenzie/empresas
+Content-Type: application/json
+{
+    "nome": "Nova Empresa",
+    "cnpj": "12.345.678/0001-90",
+    "emailContato": "contato@novaempresa.com"
+}
+###
+PUT /mackenzie/empresas/1/vagas
+Content-Type: application/json
+{
+    "titulo": "Nova Vaga",
+    "dataPublicacao": "2023-03-15",
+    "descricao": "Descrição da nova vaga",
+    "ativo": true
+}

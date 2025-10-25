@@ -1,0 +1,34 @@
+GET /mackenzie/vagas
+###
+GET /mackenzie/vagas/1
+###
+DELETE /mackenzie/vagas/1
+###
+PUT /mackenzie/vagas/1
+Content-Type: application/json
+{
+    "Titulo": "Vaga de Teste Atualizada"
+}
+###
+POST /mackenzie/vagas
+Content-Type: application/json
+{
+    "Titulo": "Nova Vaga",
+    "Descricao": "Descrição da nova vaga",
+    "DataPublicacao": "2023-03-15",
+    "Ativo": true
+}
+###
+PUT /mackenzie/vagas/1/inscricoes
+Content-Type: application/json
+{
+    "dataInscricao": "2023-03-15",
+    "status": "Pendente",
+    "mensagemApresentacao": "Estou interessado nesta vaga."
+}
+###
+PUT /mackenzie/vagas/1/areas
+Content-Type: application/json
+{
+    "nome": "Nova Área de Interesse"
+}
