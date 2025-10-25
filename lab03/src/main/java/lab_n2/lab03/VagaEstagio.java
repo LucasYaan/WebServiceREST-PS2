@@ -1,3 +1,5 @@
+package lab_n2.lab03;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import java.util.Date;
@@ -19,8 +21,8 @@ public class VagaEstagio {
     @ManyToOne
     private Empresa empresa;
 
-    @ManyToOne
-    private Area area;
+    @ManyToMany
+    private List<Area> areas;
 
     @OneToMany(mappedBy = "vagaEstagio") // verificar isso
     private List<Inscricao> inscricoes;

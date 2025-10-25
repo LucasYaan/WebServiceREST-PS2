@@ -1,3 +1,5 @@
+package lab_n2.lab03;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +20,7 @@ public class InscricaoController {
     }
 
     @PostMapping("/mackenzie/inscricaos")
-    public inscricao createinscricao(@RequestBody inscricao e){
+    public Inscricao createInscricao(@RequestBody Inscricao e){
         return inscricaoRepo.save(e);
     }
 

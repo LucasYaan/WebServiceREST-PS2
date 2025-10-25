@@ -1,3 +1,5 @@
+package lab_n2.lab03;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +20,7 @@ public class AreaController {
     }
 
     @PostMapping("/mackenzie/areas")
-    public area createarea(@RequestBody area e){
+    public Area createArea(@RequestBody Area e){
         return areaRepo.save(e);
     }
 

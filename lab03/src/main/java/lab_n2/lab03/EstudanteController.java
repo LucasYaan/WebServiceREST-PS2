@@ -1,3 +1,5 @@
+package lab_n2.lab03;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,8 +37,6 @@ public class EstudanteController {
         return estudanteRepo.findById(id).map(e -> {
             e.setNome(estudante.getNome());
             e.setEmail(estudante.getEmail());
-            e.setAnoIngresso(estudante.getAnoIngresso());
-            e.setNascimento(estudante.getNascimento());
             estudanteRepo.save(e);
             return true;
         }).orElse(false);
@@ -55,7 +55,7 @@ public class EstudanteController {
     public boolean addInscricaoToEstudante(@PathVariable long id, @RequestBody Inscricao inscricao) {
         return estudanteRepo.findById(id).map(estudante -> {
             inscricao.setEstudante(estudante);
-            estudante.getInscricaos().add(inscricao);
+            estudante.getInscricoes().add(inscricao);
             estudanteRepo.save(estudante);
             return true;
         }).orElse(false);

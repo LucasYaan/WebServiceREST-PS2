@@ -1,5 +1,7 @@
-import springboot.data.jpa.repository.CrudRepository;
+package lab_n2.lab03;
 
-public interface EmpresaRepo extends CrudRepository<Empresa, Long> {
+import org.springframework.data.repository.CrudRepository;
+
+public interface EstudanteRepo extends CrudRepository<Estudante, Long> {
     
 }

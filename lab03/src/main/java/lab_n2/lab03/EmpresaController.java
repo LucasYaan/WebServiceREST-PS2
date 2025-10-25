@@ -1,3 +1,5 @@
+package lab_n2.lab03;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +35,7 @@ public class EmpresaController {
     @PutMapping("/mackenzie/empresas/{id}")
     public boolean updateEmpresa(@PathVariable long id, @RequestBody Empresa empresa) {
         return empresaRepo.findById(id).map(e -> {
-            e.setNome(empresa.getNome());
+            e.setNomeFantasia(empresa.getNomeFantasia());
             e.setCnpj(empresa.getCnpj());
             e.setEmailContato(empresa.getEmailContato());
             empresaRepo.save(e);

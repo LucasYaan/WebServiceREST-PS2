@@ -1,3 +1,5 @@
+package lab_n2.lab03;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,10 +37,8 @@ public class VagaController {
         return VagaRepo.findById(id).map(e -> {
             e.setTitulo(vaga.getTitulo());
             e.setDescricao(vaga.getDescricao());
-            e.setPublicacao(vaga.getPublicacao());
-            e.setAtivo(vaga.isAtivo());
-            e.setEmpresa(vaga.getEmpresa());
-            e.setArea(vaga.getArea());
+            e.setDataPublicacao(vaga.getDataPublicacao());
+            e.setAtivo(vaga.getAtivo());
             VagaRepo.save(e);
             return true;
         }).orElse(false);
@@ -47,7 +47,7 @@ public class VagaController {
     @PutMapping("/mackenzie/Vagas/{id}/inscricoes")
     public boolean addInscricaoToVaga(@PathVariable long id, @RequestBody Inscricao inscricao) {
         return VagaRepo.findById(id).map(vaga -> {
-            inscricao.setVaga(vaga);
+            inscricao.setVagaEstagio(vaga);
             vaga.getInscricoes().add(inscricao);
             VagaRepo.save(vaga);
             return true;
@@ -57,7 +57,7 @@ public class VagaController {
     @PutMapping("/mackenzie/Vagas/{id}/areas")
     public boolean addAreaToVaga(@PathVariable long id, @RequestBody Area area) {
         return VagaRepo.findById(id).map(vaga -> {
-            vaga.getAreas().add(area);  
+            vaga.getAreas().add(area);
             VagaRepo.save(vaga);
             return true;
         }).orElse(false);

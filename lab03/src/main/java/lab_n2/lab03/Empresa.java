@@ -1,3 +1,5 @@
+package lab_n2.lab03;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import java.util.List;
