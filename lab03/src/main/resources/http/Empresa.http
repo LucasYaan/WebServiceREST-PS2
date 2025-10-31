@@ -7,36 +7,44 @@ DELETE http://localhost:8080/mackenzie/empresas/1
 PUT http://localhost:8080/mackenzie/empresas/1
 Content-Type: application/json
 {
-    "nome": "Cárpatos Construtores",
+    "nomeFantasia": "Cárpatos Construtores",
     "cnpj": "43.847.371/0001-16",
-    "emailContato": "contato@carpatosconstrutores.com"
+    "emailContato": "contato@carpatosconstrutores.com",
+    "endereco": "Epar.Od. Olimpou-Diafaniou, Olimpos 857 00, Grécia",
+    "descricao": "Going to find a barefoot brother out, One of our order, to associate me."
 }
 ###
 POST http://localhost:8080/mackenzie/empresas
 Content-Type: application/json
 
 {
-    "nome": "Andros Velórios",
+    "nomeFantasia": "Andros Velórios",
     "cnpj": "72.393.862/0001-32",
-    "emailContato": "contato@androsvelorios.com"
+    "emailContato": "contato@androsvelorios.com",
+    "endereco": "Fellos, Andros 845 01, Grécia",
+    "descrição" : "Gregory, on my word we’ll not carry coals. No, for then we should be colliers."
 }
 ###
 POST http://localhost:8080/mackenzie/empresas
 Content-Type: application/json
 
 {
-    "nome": "Espelhos Cefalónia",
+    "nomeFantasia": "Espelhos Cefalónia",
     "cnpj": "03.476.342/0001-70",
-    "emailContato": "contato@espelhoscefalonia.com"
+    "emailContato": "contato@espelhoscefalonia.com",
+    "endereco": "Χερσόνησος της Παλικής, Lixouri 282 00, Grécia",
+    "descricao": "The clock struck nine when I did send the Nurse. In half an hour she promised to return."
 }
 ###
 POST http://localhost:8080/mackenzie/empresas
 Content-Type: application/json
 
 {
-    "nome": "Advocacia Quios",
+    "nomeFantasia": "Advocacia Quios",
     "cnpj": "83.837.343/0001-32",
-    "emailContato": "contato@advocaciaquios.com"
+    "emailContato": "contato@advocaciaquios.com",
+    "endereco": "Kalouta 79, Chios 821 00, Grécia",
+    "descricao": "Wilt thou be gone? It is not yet near day. It was the nightingale, and not the lark."
 }
 ###
 PUT http://localhost:8080/mackenzie/empresas/1/vagas

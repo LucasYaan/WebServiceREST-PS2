@@ -57,5 +57,5 @@ PUT http://localhost:8080/mackenzie/estudantes/1/areas
 Content-Type: application/json
 
 {
-    "nome": "Nova Área de Interesse"
+    "nome": "Sequestro"
 }

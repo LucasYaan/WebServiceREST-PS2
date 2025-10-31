@@ -41,6 +41,7 @@ Content-Type: application/json
 ###
 PUT http://localhost:8080/mackenzie/areas/2
 Content-Type: application/json
+
 {
     "nome": "Roubo"
 }

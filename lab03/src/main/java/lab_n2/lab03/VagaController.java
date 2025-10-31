@@ -7,58 +7,58 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class VagaController {
     @Autowired
-    private VagaEstagioRepo VagaRepo;
+    private VagaEstagioRepo vagaRepo;
 
-    @GetMapping("/mackenzie/Vagas")
+    @GetMapping("/mackenzie/vagas")
     public Iterable<VagaEstagio> getVagas(){
-        return VagaRepo.findAll();
+        return vagaRepo.findAll();
     }
 
-    @GetMapping("/mackenzie/Vagas/{id}")
+    @GetMapping("/mackenzie/vagas/{id}")
     public VagaEstagio getVaga(@PathVariable long id){
-        return VagaRepo.findById(id).orElse(null);
+        return vagaRepo.findById(id).orElse(null);
     }
 
-    @PostMapping("/mackenzie/Vagas")
+    @PostMapping("/mackenzie/vagas")
     public VagaEstagio createVaga(@RequestBody VagaEstagio v){
-        return VagaRepo.save(v);
+        return vagaRepo.save(v);
     }
 
-    @DeleteMapping("/mackenzie/Vagas/{id}")
+    @DeleteMapping("/mackenzie/vagas/{id}")
     public boolean deleteVaga(@PathVariable long id) {
-        return VagaRepo.findById(id).map(Vaga -> {
-            VagaRepo.delete(Vaga);
+        return vagaRepo.findById(id).map(Vaga -> {
+            vagaRepo.delete(Vaga);
             return true;
         }).orElse(false);
     }
 
-    @PutMapping("/mackenzie/Vagas/{id}")
+    @PutMapping("/mackenzie/vagas/{id}")
     public boolean updateVaga(@PathVariable long id, @RequestBody VagaEstagio vaga) {
-        return VagaRepo.findById(id).map(e -> {
+        return vagaRepo.findById(id).map(e -> {
             e.setTitulo(vaga.getTitulo());
             e.setDescricao(vaga.getDescricao());
             e.setDataPublicacao(vaga.getDataPublicacao());
             e.setAtivo(vaga.getAtivo());
-            VagaRepo.save(e);
+            vagaRepo.save(e);
             return true;
         }).orElse(false);
     }
     
-    @PutMapping("/mackenzie/Vagas/{id}/inscricoes")
+    @PutMapping("/mackenzie/vagas/{id}/inscricoes")
     public boolean addInscricaoToVaga(@PathVariable long id, @RequestBody Inscricao inscricao) {
-        return VagaRepo.findById(id).map(vaga -> {
+        return vagaRepo.findById(id).map(vaga -> {
             inscricao.setVagaEstagio(vaga);
             vaga.getInscricoes().add(inscricao);
-            VagaRepo.save(vaga);
+            vagaRepo.save(vaga);
             return true;
         }).orElse(false);
     }
 
-    @PutMapping("/mackenzie/Vagas/{id}/areas")
+    @PutMapping("/mackenzie/vagas/{id}/areas")
     public boolean addAreaToVaga(@PathVariable long id, @RequestBody Area area) {
-        return VagaRepo.findById(id).map(vaga -> {
+        return vagaRepo.findById(id).map(vaga -> {
             vaga.getAreas().add(area);
-            VagaRepo.save(vaga);
+            vagaRepo.save(vaga);
             return true;
         }).orElse(false);
     }

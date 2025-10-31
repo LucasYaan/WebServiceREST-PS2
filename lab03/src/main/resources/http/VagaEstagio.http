@@ -4,35 +4,79 @@ GET http://localhost:8080/mackenzie/vagas/1
 ###
 DELETE http://localhost:8080/mackenzie/vagas/1
 ###
-PUT http://localhost:8080/mackenzie/vagas/1
+POST http://localhost:8080/mackenzie/vagas
 Content-Type: application/json
 
 {
-    "Titulo": "Vaga de Teste Atualizada"
+    "Titulo": "Rei Gusion",
+    "Descricao": "Dize: Amparo-me no Senhor dos humanos, O Rei dos humanos.",
+    "DataPublicacao": "2015-01-07",
+    "Ativo": true
 }
 ###
 POST http://localhost:8080/mackenzie/vagas
 Content-Type: application/json
 
 {
-    "Titulo": "Nova Vaga",
-    "Descricao": "Descrição da nova vaga",
-    "DataPublicacao": "2023-03-15",
+    "Titulo": "Marquês Cimejes",
+    "Descricao": "Em nome de Deus, o Clemente, o Misericordioso.",
+    "DataPublicacao": "1972-09-05",
+    "Ativo": false
+}
+###
+POST http://localhost:8080/mackenzie/vagas
+Content-Type: application/json
+
+{
+    "Titulo": "Duque Zepar",
+    "Descricao": "Tornou-se austero e voltou as costas, quando o cego foi ter com ele.",
+    "DataPublicacao": "1995-04-19",
     "Ativo": true
+}
+###
+POST http://localhost:8080/mackenzie/vagas
+Content-Type: application/json
+
+{
+    "Titulo": "Conde Glasya-Labolas",
+    "Descricao": "Pela aurora, e pelas dez noites, e pelo par e pelo ímpar.",
+    "DataPublicacao": "1976-07-04",
+    "Ativo": false
+}
+###
+POST http://localhost:8080/mackenzie/vagas
+Content-Type: application/json
+
+{
+    "Titulo": "Príncipe Gaap",
+    "Descricao": "A realidade. Que é a realidade? E o que te fará entender o que significa a realidade?",
+    "DataPublicacao": "1986-07-07",
+    "Ativo": true
+}
+###
+POST http://localhost:8080/mackenzie/vagas
+Content-Type: application/json
+
+{
+    "Titulo": "Presidente Ose",
+    "Descricao": "Em verdade, enviamos Noé ao seu povo, (dizendo-lhe): Admoesta o teu povo, antes que o açoite um castigo doloroso!",
+    "DataPublicacao": "2005-02-14",
+    "Ativo": false
 }
 ###
 PUT http://localhost:8080/mackenzie/vagas/1/inscricoes
 Content-Type: application/json
 
 {
-    "dataInscricao": "2023-03-15",
-    "status": "Pendente",
-    "mensagemApresentacao": "Estou interessado nesta vaga."
+    "Titulo": "Censor da Diversão",
+    "Descricao": "O Daniel ficou fazendo coisa esquisita então eu, Lucas Yan, troquei por coisa sem graça.",
+    "DataPublicacao": "2025-10-31",
+    "Ativo": false
 }
 ###
 PUT http://localhost:8080/mackenzie/vagas/1/areas
 Content-Type: application/json
 
 {
-    "nome": "Nova Área de Interesse"
+    "nome": "Formação de Quadrilha"
 }
