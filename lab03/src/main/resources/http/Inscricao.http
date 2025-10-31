@@ -1,10 +1,10 @@
-GET /mackenzie/inscricoes
+GET http://localhost:8080/mackenzie/inscricoes
 ###
-GET /mackenzie/inscricoes/1
+GET http://localhost:8080/mackenzie/inscricoes/1
 ###
-DELETE /mackenzie/inscricoes/1
+DELETE http://localhost:8080/mackenzie/inscricoes/1
 ###
-PUT /mackenzie/inscricoes/1
+PUT http://localhost:8080/mackenzie/inscricoes/1
 Content-Type: application/json
 {
     "DataInscricao": "2023-03-15",
@@ -12,7 +12,7 @@ Content-Type: application/json
     "MensagemApresentacao": "Estou interessado nesta vaga."
 }
 ###
-POST /mackenzie/inscricoes
+POST http://localhost:8080/mackenzie/inscricoes
 Content-Type: application/json
 {
     "Titulo": "Nova inscricao",

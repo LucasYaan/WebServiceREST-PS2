@@ -1,32 +1,61 @@
-GET /mackenzie/estudantes
+GET http://localhost:8080/mackenzie/estudantes
 ###
-GET /mackenzie/estudantes/1
+GET http://localhost:8080/mackenzie/estudantes/1
 ###
-DELETE /mackenzie/estudantes/1
+DELETE http://localhost:8080/mackenzie/estudantes/1
 ###
-PUT /mackenzie/estudantes/1
+PUT http://localhost:8080/mackenzie/estudantes/1
 Content-Type: application/json
+
 {
-    "nome": "Estudante de Teste Atualizado"
+    "nome": "Camelo Folha",
+    "email": "cfolha@mackenzie.com"
 }
 ###
-POST /mackenzie/estudantes
+POST http://localhost:8080/mackenzie/estudantes
 Content-Type: application/json
+
 {
-    "nome": "Nova Estudante",
-    "email": "novaestudante@mackenzie.com"
+    "nome": "Dedo Sobremesa",
+    "email": "dsobremesa@mackenzie.com"
 }
 ###
-PUT /mackenzie/estudantes/1/inscricoes
+POST http://localhost:8080/mackenzie/estudantes
 Content-Type: application/json
+
+{
+    "nome": "Córtex Som",
+    "email": "csom@mackenzie.com"
+}
+###
+POST http://localhost:8080/mackenzie/estudantes
+Content-Type: application/json
+
+{
+    "nome": "Voleibol Costeletas",
+    "email": "vcosteletas@mackenzie.com"
+}
+###
+POST http://localhost:8080/mackenzie/estudantes
+Content-Type: application/json
+
+{
+    "nome": "Rochas Compartimento",
+    "email": "rcompartimento@mackenzie.com"
+}
+###
+PUT http://localhost:8080/mackenzie/estudantes/1/inscricoes
+Content-Type: application/json
+
 {
     "dataInscricao": "2023-03-15",
     "status": "Pendente",
     "mensagemApresentacao": "Estou interessado nesta vaga."
 }
 ###
-PUT /mackenzie/estudantes/1/areas
+PUT http://localhost:8080/mackenzie/estudantes/1/areas
 Content-Type: application/json
+
 {
     "nome": "Nova Área de Interesse"
 }

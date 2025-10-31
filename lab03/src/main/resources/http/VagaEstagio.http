@@ -1,17 +1,19 @@
-GET /mackenzie/vagas
+GET http://localhost:8080/mackenzie/vagas
 ###
-GET /mackenzie/vagas/1
+GET http://localhost:8080/mackenzie/vagas/1
 ###
-DELETE /mackenzie/vagas/1
+DELETE http://localhost:8080/mackenzie/vagas/1
 ###
-PUT /mackenzie/vagas/1
+PUT http://localhost:8080/mackenzie/vagas/1
 Content-Type: application/json
+
 {
     "Titulo": "Vaga de Teste Atualizada"
 }
 ###
-POST /mackenzie/vagas
+POST http://localhost:8080/mackenzie/vagas
 Content-Type: application/json
+
 {
     "Titulo": "Nova Vaga",
     "Descricao": "Descrição da nova vaga",
@@ -19,16 +21,18 @@ Content-Type: application/json
     "Ativo": true
 }
 ###
-PUT /mackenzie/vagas/1/inscricoes
+PUT http://localhost:8080/mackenzie/vagas/1/inscricoes
 Content-Type: application/json
+
 {
     "dataInscricao": "2023-03-15",
     "status": "Pendente",
     "mensagemApresentacao": "Estou interessado nesta vaga."
 }
 ###
-PUT /mackenzie/vagas/1/areas
+PUT http://localhost:8080/mackenzie/vagas/1/areas
 Content-Type: application/json
+
 {
     "nome": "Nova Área de Interesse"
 }

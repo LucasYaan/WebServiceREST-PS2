@@ -1,25 +1,47 @@
-GET /mackenzie/empresas
+GET http://localhost:8080/mackenzie/empresas
 ###
-GET /mackenzie/empresas/1
+GET http://localhost:8080/mackenzie/empresas/1
 ###
-DELETE /mackenzie/empresas/1
+DELETE http://localhost:8080/mackenzie/empresas/1
 ###
-PUT /mackenzie/empresas/1
+PUT http://localhost:8080/mackenzie/empresas/1
 Content-Type: application/json
 {
-    "nome": "Empresa de Teste Atualizada"
+    "nome": "Cárpatos Construtores",
+    "cnpj": "43.847.371/0001-16",
+    "emailContato": "contato@carpatosconstrutores.com"
 }
 ###
-POST /mackenzie/empresas
+POST http://localhost:8080/mackenzie/empresas
 Content-Type: application/json
+
 {
-    "nome": "Nova Empresa",
-    "cnpj": "12.345.678/0001-90",
-    "emailContato": "contato@novaempresa.com"
+    "nome": "Andros Velórios",
+    "cnpj": "72.393.862/0001-32",
+    "emailContato": "contato@androsvelorios.com"
 }
 ###
-PUT /mackenzie/empresas/1/vagas
+POST http://localhost:8080/mackenzie/empresas
 Content-Type: application/json
+
+{
+    "nome": "Espelhos Cefalónia",
+    "cnpj": "03.476.342/0001-70",
+    "emailContato": "contato@espelhoscefalonia.com"
+}
+###
+POST http://localhost:8080/mackenzie/empresas
+Content-Type: application/json
+
+{
+    "nome": "Advocacia Quios",
+    "cnpj": "83.837.343/0001-32",
+    "emailContato": "contato@advocaciaquios.com"
+}
+###
+PUT http://localhost:8080/mackenzie/empresas/1/vagas
+Content-Type: application/json
+
 {
     "titulo": "Nova Vaga",
     "dataPublicacao": "2023-03-15",

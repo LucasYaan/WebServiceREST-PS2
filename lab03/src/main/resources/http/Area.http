@@ -1,12 +1,47 @@
-GET /mackenzie/areas
+GET http://localhost:8080/mackenzie/areas
 ###
-GET /mackenzie/areas/3
+GET http://localhost:8080/mackenzie/areas/3
 ###
-DELETE /mackenzie/areas/3
+DELETE http://localhost:8080/mackenzie/areas/3
 ###
-PUT /mackenzie/areas/2
+POST http://localhost:8080/mackenzie/areas
+Content-Type: application/json
+
+{
+    "nome": "Delinquência"
+}
+###
+POST http://localhost:8080/mackenzie/areas
+Content-Type: application/json
+
+{
+    "nome": "Formação de Quadrilha"
+}
+###
+POST http://localhost:8080/mackenzie/areas
+Content-Type: application/json
+
+{
+    "nome": "Evasão Fiscal"
+}
+###
+POST http://localhost:8080/mackenzie/areas
+Content-Type: application/json
+
+{
+    "nome": "Chantagem"
+}
+###
+POST http://localhost:8080/mackenzie/areas
+Content-Type: application/json
+
+{
+    "nome": "Sequestro"
+}
+###
+PUT http://localhost:8080/mackenzie/areas/2
 Content-Type: application/json
 {
-    "nome": "Area de Teste Atualizada"
+    "nome": "Roubo"
 }
 ###
