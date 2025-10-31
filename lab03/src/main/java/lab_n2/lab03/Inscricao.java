@@ -6,20 +6,18 @@ import java.util.Date;
 
 @Data
 @Entity
-/* @NoArgsConstructor
-@AllArgsConstructor */
 public class Inscricao {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // verificar isso
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Date dataInscricao;
     private String status;
     private String mensagemApresentacao;
 
-    @ManyToOne
+    @OneToMany(mappedBy = "estudante")
     private Estudante estudante;
 
-    @ManyToOne
+    @OneToMany(mappedBy = "estudante")
     private VagaEstagio vagaEstagio;
 }

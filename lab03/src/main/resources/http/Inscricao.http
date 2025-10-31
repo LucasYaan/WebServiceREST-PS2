@@ -4,20 +4,90 @@ GET http://localhost:8080/mackenzie/inscricoes/1
 ###
 DELETE http://localhost:8080/mackenzie/inscricoes/1
 ###
+POST http://localhost:8080/mackenzie/inscricoes
+Content-Type: application/json
+
+{
+    "DataInscricao": "2023-05-20",
+    "Status": "Pendente",
+    "MensagemApresentacao": "Ansioso para começar!"
+}
+;
+###
 PUT http://localhost:8080/mackenzie/inscricoes/1
 Content-Type: application/json
 {
-    "DataInscricao": "2023-03-15",
-    "Status": "Pendente",
-    "MensagemApresentacao": "Estou interessado nesta vaga."
+    "DataInscricao": "2023-05-28",
+    "Status": "Confirmada",
+    "MensagemApresentacao": "Ansioso para começar!"
 }
+
 ###
 POST http://localhost:8080/mackenzie/inscricoes
 Content-Type: application/json
 {
-    "Titulo": "Nova inscricao",
-    "Descricao": "Descrição da nova inscricao",
-    "DataPublicacao": "2023-03-15",
-    "Ativo": true
+    "DataInscricao": "2024-04-20",
+    "Status": "Confirmada",
+    "MensagemApresentacao": "Estou interessado nesta vaga."
 }
 
+###
+POST http://localhost:8080/mackenzie/inscricoes
+Content-Type: application/json
+{
+    "DataInscricao": "2024-03-20",
+    "Status": "Confirmada",
+    "MensagemApresentacao": "Ansioso para começar!"
+}
+
+POST http://localhost:8080/mackenzie/inscricoes
+Content-Type: application/json
+{
+    "DataInscricao": "2024-11-02",
+    "Status": "Pendente",
+    "MensagemApresentacao": "Ansioso para começar!"
+}
+###
+PUT http://localhost:8080/mackenzie/inscricoes
+Content-Type: application/json
+{
+    "DataInscricao": "2024-12-25",
+    "Status": "Confirmada",
+    "MensagemApresentacao": "Ansioso para começar!"
+}
+
+###
+POST http://localhost:8080/mackenzie/inscricoes
+Content-Type: application/json
+{
+    "DataInscricao": "2024-01-19",
+    "Status": "Confirmada",
+    "MensagemApresentacao": "Ansioso para começar!"
+}
+
+###
+POST http://localhost:8080/mackenzie/inscricoes
+Content-Type: application/json
+{
+    "DataInscricao": "2024-07-28",
+    "Status": "Confirmada",
+    "MensagemApresentacao": "Ansioso para começar!"
+}
+
+###
+POST http://localhost:8080/mackenzie/inscricoes
+Content-Type: application/json
+{
+    "DataInscricao": "2024-06-09",
+    "Status": "Pendente",
+    "MensagemApresentacao": "Ansioso para começar!"
+}
+
+###
+POST http://localhost:8080/mackenzie/inscricoes
+Content-Type: application/json
+{
+    "DataInscricao": "2024-06-11",
+    "Status": "Confirmada",
+    "MensagemApresentacao": "Ansioso para começar!"
+}

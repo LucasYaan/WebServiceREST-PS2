@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 public class Estudante {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // verificar isso
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     private String nome;
@@ -19,6 +19,6 @@ public class Estudante {
     @ManyToMany
     private List<Area> areasInteresse = new ArrayList<>();
 
-    @OneToMany(mappedBy = "estudante") // verificar isso
+    @OneToMany(mappedBy = "estudante")
     private List<Inscricao> inscricoes = new ArrayList<>();
 }

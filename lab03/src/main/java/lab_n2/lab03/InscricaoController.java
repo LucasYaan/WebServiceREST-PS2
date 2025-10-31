@@ -4,27 +4,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-@RestController
+@RestController 
 public class InscricaoController {
     @Autowired
     private InscricaoRepo inscricaoRepo;
 
-    @GetMapping("/mackenzie/inscricaos")
-    public Iterable<Inscricao> getInscricaos(){
+    @GetMapping("/mackenzie/inscricoes")
+    public Iterable<Inscricao> getInscricoes(){
         return inscricaoRepo.findAll();
     }
 
-    @GetMapping("/mackenzie/inscricaos/{id}")
+    @GetMapping("/mackenzie/inscricoes/{id}")
     public Inscricao getInscricao(@PathVariable long id){
         return inscricaoRepo.findById(id).orElse(null);
     }
 
-    @PostMapping("/mackenzie/inscricaos")
+    @PostMapping("/mackenzie/inscricoes")
     public Inscricao createInscricao(@RequestBody Inscricao e){
         return inscricaoRepo.save(e);
     }
 
-    @DeleteMapping("/mackenzie/inscricaos/{id}")
+    @DeleteMapping("/mackenzie/inscricoes/{id}")
     public boolean deleteInscricao(@PathVariable long id) {
         return inscricaoRepo.findById(id).map(inscricao -> {
             inscricaoRepo.delete(inscricao);
@@ -32,7 +32,7 @@ public class InscricaoController {
         }).orElse(false);
     }
 
-    @PutMapping("/mackenzie/inscricaos/{id}")
+    @PutMapping("/mackenzie/inscricoes/{id}")
     public boolean updateInscricao(@PathVariable long id, @RequestBody Inscricao inscricao) {
         return inscricaoRepo.findById(id).map(i -> {
             i.setDataInscricao(inscricao.getDataInscricao());
