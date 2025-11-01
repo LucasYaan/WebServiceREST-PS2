@@ -10,6 +10,7 @@ public class Inscricao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
 
     private Date dataInscricao;
     private String status;
