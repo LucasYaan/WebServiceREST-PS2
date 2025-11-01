@@ -15,9 +15,9 @@ public class Inscricao {
     private String status;
     private String mensagemApresentacao;
 
-    @OneToMany(mappedBy = "estudante")
+    @ManyToOne
     private Estudante estudante;
 
-    @OneToMany(mappedBy = "estudante")
+    @ManyToOne
     private VagaEstagio vagaEstagio;
 }

@@ -16,6 +16,6 @@ public class Area {
     @ManyToMany(mappedBy = "areasInteresse")  // verificar isso
     private List<Estudante> estudantes;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "areas")
     private List<VagaEstagio> vagas;
 }

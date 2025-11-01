@@ -8,75 +8,82 @@ POST http://localhost:8080/mackenzie/vagas
 Content-Type: application/json
 
 {
-    "Titulo": "Rei Gusion",
-    "Descricao": "Dize: Amparo-me no Senhor dos humanos, O Rei dos humanos.",
-    "DataPublicacao": "2015-01-07",
-    "Ativo": true
+    "titulo": "Rei Gusion",
+    "descricao": "Dize: Amparo-me no Senhor dos humanos, O Rei dos humanos.",
+    "dataPublicacao": "2015-01-07",
+    "ativo": true,
+    "empresa": {
+        "id": 1
+    },
+    "areas": {
+        "id": 1
+    }
+
 }
 ###
 POST http://localhost:8080/mackenzie/vagas
 Content-Type: application/json
 
 {
-    "Titulo": "Marquês Cimejes",
-    "Descricao": "Em nome de Deus, o Clemente, o Misericordioso.",
-    "DataPublicacao": "1972-09-05",
-    "Ativo": false
+    "titulo": "Marquês Cimejes",
+    "descricao": "Em nome de Deus, o Clemente, o Misericordioso.",
+    "dataPublicacao": "1972-09-05",
+    "ativo": false
 }
 ###
 POST http://localhost:8080/mackenzie/vagas
 Content-Type: application/json
 
 {
-    "Titulo": "Duque Zepar",
-    "Descricao": "Tornou-se austero e voltou as costas, quando o cego foi ter com ele.",
-    "DataPublicacao": "1995-04-19",
-    "Ativo": true
+    "titulo": "Duque Zepar",
+    "descricao": "Tornou-se austero e voltou as costas, quando o cego foi ter com ele.",
+    "dataPublicacao": "1995-04-19",
+    "ativo": true
 }
 ###
 POST http://localhost:8080/mackenzie/vagas
 Content-Type: application/json
 
 {
-    "Titulo": "Conde Glasya-Labolas",
-    "Descricao": "Pela aurora, e pelas dez noites, e pelo par e pelo ímpar.",
-    "DataPublicacao": "1976-07-04",
-    "Ativo": false
+    "titulo": "Conde Glasya-Labolas",
+    "descricao": "Pela aurora, e pelas dez noites, e pelo par e pelo ímpar.",
+    "dataPublicacao": "1976-07-04",
+    "ativo": false
 }
 ###
 POST http://localhost:8080/mackenzie/vagas
 Content-Type: application/json
 
 {
-    "Titulo": "Príncipe Gaap",
-    "Descricao": "A realidade. Que é a realidade? E o que te fará entender o que significa a realidade?",
-    "DataPublicacao": "1986-07-07",
-    "Ativo": true
+    "titulo": "Príncipe Gaap",
+    "descricao": "A realidade. Que é a realidade? E o que te fará entender o que significa a realidade?",
+    "dataPublicacao": "1986-07-07",
+    "ativo": true
 }
 ###
 POST http://localhost:8080/mackenzie/vagas
 Content-Type: application/json
 
 {
-    "Titulo": "Presidente Ose",
-    "Descricao": "Em verdade, enviamos Noé ao seu povo, (dizendo-lhe): Admoesta o teu povo, antes que o açoite um castigo doloroso!",
-    "DataPublicacao": "2005-02-14",
-    "Ativo": false
+    "titulo": "Presidente Ose",
+    "descricao": "Em verdade, enviamos Noé ao seu povo, (dizendo-lhe): Admoesta o teu povo, antes que o açoite um castigo doloroso!",
+    "dataPublicacao": "2005-02-14",
+    "ativo": false
 }
 ###
 PUT http://localhost:8080/mackenzie/vagas/1/inscricoes
 Content-Type: application/json
 
 {
-    "Titulo": "Censor da Diversão",
-    "Descricao": "O Daniel ficou fazendo coisa esquisita então eu, Lucas Yan, troquei por coisa sem graça.",
-    "DataPublicacao": "2025-10-31",
-    "Ativo": false
+    "titulo": "Censor da Diversão",
+    "descricao": "O Daniel ficou fazendo coisa esquisita então eu, Lucas Yan, troquei por coisa sem graça.",
+    "dataPublicacao": "2025-10-31",
+    "ativo": false
 }
 ###
 PUT http://localhost:8080/mackenzie/vagas/1/areas
 Content-Type: application/json
 
 {
-    "nome": "Formação de Quadrilha"
+    "id": 1
 }
