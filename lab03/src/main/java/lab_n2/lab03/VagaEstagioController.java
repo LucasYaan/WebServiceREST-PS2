@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-public class VagaController {
+public class VagaEstagioController {
     @Autowired
     private VagaEstagioRepo vagaRepo;
 
@@ -26,8 +26,8 @@ public class VagaController {
 
     @DeleteMapping("/mackenzie/vagas/{id}")
     public boolean deleteVaga(@PathVariable long id) {
-        return vagaRepo.findById(id).map(Vaga -> {
-            vagaRepo.delete(Vaga);
+        return vagaRepo.findById(id).map(vaga -> {
+            vagaRepo.delete(vaga);
             return true;
         }).orElse(false);
     }

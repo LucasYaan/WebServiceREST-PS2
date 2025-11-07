@@ -6,6 +6,7 @@ DELETE http://localhost:8080/mackenzie/empresas/1
 ###
 PUT http://localhost:8080/mackenzie/empresas/1
 Content-Type: application/json
+
 {
     "nomeFantasia": "Cárpatos Construtores",
     "cnpj": "43.847.371/0001-16",
@@ -22,7 +23,7 @@ Content-Type: application/json
     "cnpj": "72.393.862/0001-32",
     "emailContato": "contato@androsvelorios.com",
     "endereco": "Fellos, Andros 845 01, Grécia",
-    "descrição" : "Gregory, on my word we’ll not carry coals. No, for then we should be colliers."
+    "descricao" : "Gregory, on my word we’ll not carry coals. No, for then we should be colliers."
 }
 ###
 POST http://localhost:8080/mackenzie/empresas
@@ -51,8 +52,8 @@ PUT http://localhost:8080/mackenzie/empresas/1/vagas
 Content-Type: application/json
 
 {
-    "titulo": "Nova Vaga",
-    "dataPublicacao": "2023-03-15",
-    "descricao": "Descrição da nova vaga",
-    "ativo": true
+    "titulo": "Marquês Cimejes",
+    "descricao": "Em nome de Deus, o Clemente, o Misericordioso.",
+    "dataPublicacao": "1972-09-05",
+    "ativo": false
 }
