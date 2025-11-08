@@ -19,11 +19,13 @@ public class EmpresaController {
         return empresaRepo.findById(id).orElse(null);
     }
 
+    @SuppressWarnings("null")
     @PostMapping("/mackenzie/empresas")
     public Empresa createEmpresa(@RequestBody Empresa e){
         return empresaRepo.save(e);
     }
 
+    @SuppressWarnings("null")
     @DeleteMapping("/mackenzie/empresas/{id}")
     public boolean deleteEmpresa(@PathVariable long id) {
         return empresaRepo.findById(id).map(empresa -> {
@@ -43,11 +45,11 @@ public class EmpresaController {
         }).orElse(false);
     }
 
+    @SuppressWarnings("null")
     @PutMapping("/mackenzie/empresas/{id}/vagas")
     public boolean addVagaToEmpresa(@PathVariable long id, @RequestBody VagaEstagio vaga) {
         return empresaRepo.findById(id).map(empresa -> {
             vaga.setEmpresa(empresa);
-            empresa.getVagas().add(vaga);
             empresaRepo.save(empresa);
             return true;
         }).orElse(false);

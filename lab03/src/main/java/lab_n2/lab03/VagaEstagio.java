@@ -3,14 +3,13 @@ package lab_n2.lab03;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.util.Date;
-import java.util.List;
 
 
 @Data
 @Entity
 public class VagaEstagio {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // verificar isso
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String titulo;
@@ -20,10 +19,4 @@ public class VagaEstagio {
 
     @ManyToOne
     private Empresa empresa;
-
-    @ManyToMany
-    private List<Area> areas;
-
-    @OneToMany(mappedBy = "vagaEstagio") // verificar isso
-    private List<Inscricao> inscricoes;
 }

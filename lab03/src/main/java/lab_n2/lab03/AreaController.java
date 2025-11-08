@@ -19,11 +19,13 @@ public class AreaController {
         return areaRepo.findById(id).orElse(null);
     }
 
+    @SuppressWarnings("null")
     @PostMapping("/mackenzie/areas")
     public Area createArea(@RequestBody Area e){
         return areaRepo.save(e);
     }
 
+    @SuppressWarnings("null")
     @DeleteMapping("/mackenzie/areas/{id}")
     public boolean deleteArea(@PathVariable long id) {
         return areaRepo.findById(id).map(area -> {

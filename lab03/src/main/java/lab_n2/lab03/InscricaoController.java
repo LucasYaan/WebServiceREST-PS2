@@ -19,11 +19,13 @@ public class InscricaoController {
         return inscricaoRepo.findById(id).orElse(null);
     }
 
+    @SuppressWarnings("null")
     @PostMapping("/mackenzie/inscricoes")
     public Inscricao createInscricao(@RequestBody Inscricao e){
         return inscricaoRepo.save(e);
     }
 
+    @SuppressWarnings("null")
     @DeleteMapping("/mackenzie/inscricoes/{id}")
     public boolean deleteInscricao(@PathVariable long id) {
         return inscricaoRepo.findById(id).map(inscricao -> {

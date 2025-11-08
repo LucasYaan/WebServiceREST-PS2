@@ -19,11 +19,13 @@ public class EstudanteController {
         return estudanteRepo.findById(id).orElse(null);
     }
 
+    @SuppressWarnings("null")
     @PostMapping("/mackenzie/estudantes")
     public Estudante createEstudante(@RequestBody Estudante e){
         return estudanteRepo.save(e);
     }
 
+    @SuppressWarnings("null")
     @DeleteMapping("/mackenzie/estudantes/{id}")
     public boolean deleteEstudante(@PathVariable long id) {
         return estudanteRepo.findById(id).map(estudante -> {
@@ -42,20 +44,20 @@ public class EstudanteController {
         }).orElse(false);
     }    
 
+    @SuppressWarnings("null")
     @PutMapping("/mackenzie/estudantes/{id}/areas")
     public boolean addAreaToEstudante(@PathVariable long id, @RequestBody Area area) {
         return estudanteRepo.findById(id).map(estudante -> {
-            estudante.getAreasInteresse().add(area);
             estudanteRepo.save(estudante);
             return true;
         }).orElse(false); 
     }
 
+    @SuppressWarnings("null")
     @PutMapping("/mackenzie/estudantes/{id}/inscricoes")
     public boolean addInscricaoToEstudante(@PathVariable long id, @RequestBody Inscricao inscricao) {
         return estudanteRepo.findById(id).map(estudante -> {
             inscricao.setEstudante(estudante);
-            estudante.getInscricoes().add(inscricao);
             estudanteRepo.save(estudante);
             return true;
         }).orElse(false);

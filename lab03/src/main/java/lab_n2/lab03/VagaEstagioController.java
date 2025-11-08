@@ -19,11 +19,13 @@ public class VagaEstagioController {
         return vagaRepo.findById(id).orElse(null);
     }
 
+    @SuppressWarnings("null")
     @PostMapping("/mackenzie/vagas")
     public VagaEstagio createVaga(@RequestBody VagaEstagio v){
         return vagaRepo.save(v);
     }
 
+    @SuppressWarnings("null")
     @DeleteMapping("/mackenzie/vagas/{id}")
     public boolean deleteVaga(@PathVariable long id) {
         return vagaRepo.findById(id).map(vaga -> {
@@ -44,20 +46,20 @@ public class VagaEstagioController {
         }).orElse(false);
     }
     
+    @SuppressWarnings("null")
     @PutMapping("/mackenzie/vagas/{id}/inscricoes")
     public boolean addInscricaoToVaga(@PathVariable long id, @RequestBody Inscricao inscricao) {
         return vagaRepo.findById(id).map(vaga -> {
             inscricao.setVagaEstagio(vaga);
-            vaga.getInscricoes().add(inscricao);
             vagaRepo.save(vaga);
             return true;
         }).orElse(false);
     }
 
+    @SuppressWarnings("null")
     @PutMapping("/mackenzie/vagas/{id}/areas")
     public boolean addAreaToVaga(@PathVariable long id, @RequestBody Area area) {
         return vagaRepo.findById(id).map(vaga -> {
-            vaga.getAreas().add(area);
             vagaRepo.save(vaga);
             return true;
         }).orElse(false);

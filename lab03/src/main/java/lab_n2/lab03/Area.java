@@ -8,14 +8,11 @@ import java.util.List;
 @Entity
 public class Area {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // verificar isso
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
 
     private String nome;
 
-    @ManyToMany(mappedBy = "areasInteresse")  // verificar isso
+    @ManyToMany(mappedBy = "areasInteresse")
     private List<Estudante> estudantes;
-
-    @ManyToMany(mappedBy = "areas")
-    private List<VagaEstagio> vagas;
 }
