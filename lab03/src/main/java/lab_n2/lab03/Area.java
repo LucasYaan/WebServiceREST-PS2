@@ -13,6 +13,6 @@ public class Area {
 
     private String nome;
 
-    @ManyToMany(mappedBy = "areasInteresse")
+    @ManyToMany
     private List<Estudante> estudantes;
 }

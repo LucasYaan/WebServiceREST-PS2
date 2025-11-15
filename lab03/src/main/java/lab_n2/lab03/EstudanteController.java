@@ -3,7 +3,6 @@ package lab_n2.lab03;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 public class EstudanteController {
     @Autowired
