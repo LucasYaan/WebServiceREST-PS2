@@ -14,18 +14,18 @@
             <tr> <td>Email:</td> <td><input type="text" id="txtEmail"></td> </tr>
 
             <tr><td></td><td>
-                <input type="button" value="Novo" onclick="novaArea()" id="btnNovo">
-                <input type="button" value="Salvar" onclick="salvarArea()" id="btnSalvar">
-                <input type="button" value="Apagar" onclick="apagarArea()" id="btnApagar">
+                <input type="button" value="Novo" onclick="novoEstudante()" id="btnNovo">
+                <input type="button" value="Salvar" onclick="salvarEstudante()" id="btnSalvar">
+                <input type="button" value="Apagar" onclick="apagarEstudante()" id="btnApagar">
                 <input type="button" value="Cancelar" onclick="cancelarEdicao()" id="btnCancelar">
             </td></tr>
         </table> 
         
 		<p style="font-weight:bold" id="paragrafoMensagem"></p>
 		
-        <table>    
+        <table id="tabelaEstudantes">    
             <tr> <th>ID</th> <th>Nome</th> <th>Email</th> </tr>
-            <tbody id="corpoTabelaAreas"> </tbody>
+            <tbody id="corpoTabelaEstudantes"> </tbody>
         </table>
 
 		<style>
@@ -46,7 +46,7 @@
 		</style>
 
         <script>
-	        const corpoTabela = document.querySelector('#corpoTabelaAreas');
+	        const corpoTabela = document.querySelector('#corpoTabelaEstudantes');
 	        const paragrafoMensagem = document.querySelector('#paragrafoMensagem');
 	        const txtId = document.querySelector('#txtId');
 	        const txtNome = document.querySelector('#txtNome');
@@ -61,8 +61,8 @@
 	        inicializar();
 
 	        function inicializar() {
-	        	criandoNovaArea = false;
-	            paragrafoMensagem.innerHTML = 'Pressione o botão Novo ou selecione uma area da lista:'
+	        	criandoNovo = false;
+	            paragrafoMensagem.innerHTML = 'Pressione o botão Novo ou selecione um estudante da lista:'
 	            txtId.value = '';
 	            txtNome.value = '';
 	            txtEmail.value = '';
@@ -75,11 +75,11 @@
 	            btnSalvar.disabled = true;
 	            btnApagar.disabled = true;
 	            btnCancelar.disabled = true;
-	            listarTodasAreas();            
+	            listarTodosEstudantes();            
 	        }
 
-	        async function listarTodasAreas() {
-	            const URL = `/api/estudantes`;
+	        async function listarTodosEstudantes() {
+	            const URL = `/mackenzie/estudantes`;
 	            fetch(URL)
 	              .then(resposta => { if (!resposta.ok) throw Error(resposta.status); return resposta;}) 
 	              .then(resposta => resposta.json())
@@ -94,16 +94,18 @@
 	            for (var i = 0; i < n; i++) {
 	                var f = estudantes[i];
 	                linhasTabela += 
-	                	`<tr><td><a href="javascript:void(0)" onclick="selecionarArea('${f.id}','${f.nome}')">` 
-	                    + f.id     + '</a></td>' + 
-	                    '<td>' + f.nome   + '</td>';
+	                `<tr>
+						<td><a href="javascript:void(0)" onclick="selecionarEstudante('${f.id}','${f.nome}', '${f.email}')">${f.id}</a></td>
+						<td>${f.nome}</td>
+						<td>${f.email}</td>
+					</tr>`;
 	            }
 	            corpoTabela.innerHTML = linhasTabela;
 	        }
 
-	        function selecionarAreas(id, nome, email) {
-	        	criandoNovaAreas = false;
-	            paragrafoMensagem.innerHTML = 'Altere e salve os dados da Areasr, ou então apague o registro da Areas.'
+	        function selecionarEstudante(id, nome, email) {
+	        	criandoNovo = false;
+	            paragrafoMensagem.innerHTML = 'Altere e salve os dados do estudante, ou então apague o registro do estudante.'
 	            txtId.value = id;
 	            txtNome.value = nome;
 	            txtEmail.value = email;
@@ -119,9 +121,9 @@
 	            btnCancelar.disabled = false;  
 	        }
 
-	        function novaAreas() {
-	        	paragrafoMensagem.innerHTML = 'Preencha os dados da nova Areas...';
-	        	criandoNovaAreas = true;
+	        function novoEstudante() {
+	        	paragrafoMensagem.innerHTML = 'Preencha os dados do novo estudante...';
+	        	criandoNovo = true;
 	        	
 	        	txtId.value = '';
 	        	txtNome.value = '';
@@ -137,68 +139,68 @@
 	        	btnCancelar.disabled = false;
 	        }
 	        
-	        function salvarAreas() {
-	        	if (criandoNovaAreas) {
-	        		criarAreas();
+	        function salvarEstudante() {
+	        	if (criandoNovo) {
+	        		criarEstudante();
 	        	}
 	        	else {
-	        		alterarAreas();
+	        		alterarEstudante();
 	        	}
 	        }
 	        
-	        async function criarAreas() {
-	        	const URL = `/api/estudantes`;
-	        	const dadosAreas = {
+	        async function criarEstudante() {
+	        	const URL = `/mackenzie/estudantes`;
+	        	const dadosEstudante = {
 	        		'nome': txtNome.value,
 	        		'email': txtEmail.value
 
 	        	};
 	        	const postRequest = {
 	        		method: 'POST',
-	        		body: JSON.stringify(dadosAreas),
+	        		body: JSON.stringify(dadosEstudante),
 	        		headers: { 'Content-type': 'application/json' }
 	        	};
 	        	fetch(URL, postRequest)
 	        		.then(resposta => { if (!resposta.ok) throw Error(resposta.status); return resposta; } )
 	        		.then(resposta => resposta.json())
 	        		.then(jsonResponse => inicializar())
-	        		.catch(function(error) { paragrafoMensagem.innerHTML = 'Erro ao criar nova Areas (código ' + error.message + ')'; } );
+	        		.catch(function(error) { paragrafoMensagem.innerHTML = 'Erro ao criar novo estudante (código ' + error.message + ')'; } );
 	        }
 	        
-	        async function alterarAreas() {
+	        async function alterarEstudante() {
 	        	const ID = txtId.value;
-	        	const URL = `/api/estudantes/${ID}`;
-	        	const dadosAreas = {
+	        	const URL = `/mackenzie/estudantes/${ID}`;
+	        	const dadosEstudante = {
 	        		'id': ID,
 	        		'nome': txtNome.value,
                     'email': txtEmail.value
 	        	};
 	        	const putRequest = {
 	        		method: 'PUT',
-	        		body: JSON.stringify(dadosAreas),
+	        		body: JSON.stringify(dadosEstudante),
 	        		headers: { 'Content-type': 'application/json' }
 	        	};
 	        	fetch(URL, putRequest)
 	        		.then(resposta => { if (!resposta.ok) throw Error(resposta.status); return resposta; } )
 	        		.then(resposta => resposta.json())
 	        		.then(jsonResponse => inicializar())
-	        		.catch(function(error) { paragrafoMensagem.innerHTML = 'Erro ao alterar Areas (código ' + error.message + ')'; } );	        	
+	        		.catch(function(error) { paragrafoMensagem.innerHTML = 'Erro ao alterar estudante (código ' + error.message + ')'; } );	        	
 	        }
 	        
 	        function cancelarEdicao() {
 	        	inicializar();
 	        }
 	        
-	        async function apagarAreas() {
+	        async function apagarEstudante() {
 	        	const ID = txtId.value;
-	        	const URL = `/api/estudantes/${ID}`;
+	        	const URL = `/mackenzie/estudantes/${ID}`;
 	        	const deleteRequest = {
 	        		method: 'DELETE'
 	        	};
 	        	fetch(URL, deleteRequest)
 	        		.then(resposta => { if (!resposta.ok) throw Error(resposta.status); return resposta; } )
 	        		.then(resposta => inicializar())
-	        		.catch(function(error) { paragrafoMensagem.innerHTML = 'Erro ao apagar estudantes (código ' + error.message + ')'; } );	        		
+	        		.catch(function(error) { paragrafoMensagem.innerHTML = 'Erro ao apagar estudante (código ' + error.message + ')'; } );	        		
 	        }
 	        
 	    </script>   
