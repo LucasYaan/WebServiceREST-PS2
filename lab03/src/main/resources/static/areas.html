@@ -21,33 +21,17 @@
         
 		<p style="font-weight:bold" id="paragrafoMensagem"></p>
 		
-        <table>    
+        <table id="tabelaAreas">    
             <tr> <th>ID</th> <th>Nome</th> </tr>
             <tbody id="corpoTabelaAreas"> </tbody>
         </table>
 
-		<style>
-			body {
-				font-family: Arial, sans-serif;
-				margin: 20px;
-				height: 100vh;
-				box-sizing: border-box;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-			}
-			th, tr, td {
-				padding: 8px;
-				text-align: left;    
-			}
-		</style>
-
         <script>
+			const tabelaAreas = document.querySelector('#tabelaAreas');
 	        const corpoTabela = document.querySelector('#corpoTabelaAreas');
 	        const paragrafoMensagem = document.querySelector('#paragrafoMensagem');
-	        const txtNome = document.querySelector('#txtNome');
 	        const txtId = document.querySelector('#txtId');
+	        const txtNome = document.querySelector('#txtNome');
 	        
 	        const btnNovo = document.querySelector('#btnNovo');
 	        const btnSalvar = document.querySelector('#btnSalvar');
@@ -85,20 +69,20 @@
 	        
 	        function preencherTabela(areas) {
 	            var linhasTabela = '';
-	            var n = areas.length;
-	            for (var i = 0; i < n; i++) {
+	            for (var i = 0; i < areas.length; i++) {
 	                var f = areas[i];
 	                linhasTabela += 
-	                	`<tr><td><a href="javascript:void(0)" onclick="selecionarArea('${f.id}','${f.nome}')">` 
-	                    + f.id     + '</a></td>' + 
-	                    '<td>' + f.nome   + '</td>';
+					`<tr>
+						<td><a href="javascript:void(0)" onclick="selecionarArea('${f.id}','${f.nome}')">${f.id}</a></td>
+						<td>${f.nome}</td>
+					</tr>`;
 	            }
 	            corpoTabela.innerHTML = linhasTabela;
 	        }
 
-	        function selecionarAreas(id, nome) {
+	        function selecionarArea(id, nome) {
 	        	criandoNovaAreas = false;
-	            paragrafoMensagem.innerHTML = 'Altere e salve os dados da Areasr, ou então apague o registro da Areas.'
+	            paragrafoMensagem.innerHTML = 'Altere e salve os dados da Área, ou então apague o registro da Área.'
 	            txtId.value = id;
 	            txtNome.value = nome;
 
@@ -111,8 +95,8 @@
 	            btnCancelar.disabled = false;  
 	        }
 
-	        function novaAreas() {
-	        	paragrafoMensagem.innerHTML = 'Preencha os dados da nova Areas...';
+	        function novaArea() {
+	        	paragrafoMensagem.innerHTML = 'Preencha os dados da nova Áreas...';
 	        	criandoNovaAreas = true;
 	        	
 	        	txtId.value = '';
@@ -127,7 +111,7 @@
 	        	btnCancelar.disabled = false;
 	        }
 	        
-	        function salvarAreas() {
+	        function salvarArea() {
 	        	if (criandoNovaAreas) {
 	        		criarAreas();
 	        	}
@@ -136,7 +120,7 @@
 	        	}
 	        }
 	        
-	        async function criarAreas() {
+	        async function criarArea() {
 	        	const URL = `/api/areas`;
 	        	const dadosAreas = {
 	        		'nome': txtNome.value
@@ -150,7 +134,7 @@
 	        		.then(resposta => { if (!resposta.ok) throw Error(resposta.status); return resposta; } )
 	        		.then(resposta => resposta.json())
 	        		.then(jsonResponse => inicializar())
-	        		.catch(function(error) { paragrafoMensagem.innerHTML = 'Erro ao criar nova Areas (código ' + error.message + ')'; } );
+	        		.catch(function(error) { paragrafoMensagem.innerHTML = 'Erro ao criar nova área (código ' + error.message + ')'; } );
 	        }
 	        
 	        async function alterarAreas() {
@@ -169,7 +153,7 @@
 	        		.then(resposta => { if (!resposta.ok) throw Error(resposta.status); return resposta; } )
 	        		.then(resposta => resposta.json())
 	        		.then(jsonResponse => inicializar())
-	        		.catch(function(error) { paragrafoMensagem.innerHTML = 'Erro ao alterar Areas (código ' + error.message + ')'; } );	        	
+	        		.catch(function(error) { paragrafoMensagem.innerHTML = 'Erro ao alterar área (código ' + error.message + ')'; } );	        	
 	        }
 	        
 	        function cancelarEdicao() {
@@ -185,9 +169,26 @@
 	        	fetch(URL, deleteRequest)
 	        		.then(resposta => { if (!resposta.ok) throw Error(resposta.status); return resposta; } )
 	        		.then(resposta => inicializar())
-	        		.catch(function(error) { paragrafoMensagem.innerHTML = 'Erro ao apagar areas (código ' + error.message + ')'; } );	        		
+	        		.catch(function(error) { paragrafoMensagem.innerHTML = 'Erro ao apagar área (código ' + error.message + ')'; } );	        		
 	        }
 	        
 	    </script>   
+
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 20px;
+				height: 100vh;
+				box-sizing: border-box;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+			th, tr, td {
+				padding: 8px;
+				text-align: left;    
+			}
+		</style>
 </body>
 </html>
