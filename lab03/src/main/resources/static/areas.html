@@ -58,7 +58,7 @@
 	        }
 
 	        async function listarTodasAreas() {
-	            const URL = `/api/areas`;
+	            const URL = `/mackenzie/areas`;
 	            fetch(URL)
 	              .then(resposta => { if (!resposta.ok) throw Error(resposta.status); return resposta;}) 
 	              .then(resposta => resposta.json())
@@ -81,7 +81,7 @@
 	        }
 
 	        function selecionarArea(id, nome) {
-	        	criandoNovaAreas = false;
+	        	criandoNovaArea = false;
 	            paragrafoMensagem.innerHTML = 'Altere e salve os dados da Área, ou então apague o registro da Área.'
 	            txtId.value = id;
 	            txtNome.value = nome;
@@ -96,8 +96,8 @@
 	        }
 
 	        function novaArea() {
-	        	paragrafoMensagem.innerHTML = 'Preencha os dados da nova Áreas...';
-	        	criandoNovaAreas = true;
+	        	paragrafoMensagem.innerHTML = 'Preencha os dados da nova área...';
+	        	criandoNovaArea = true;
 	        	
 	        	txtId.value = '';
 	        	txtNome.value = '';
@@ -112,16 +112,16 @@
 	        }
 	        
 	        function salvarArea() {
-	        	if (criandoNovaAreas) {
-	        		criarAreas();
+	        	if (criandoNovaArea) {
+	        		criarArea();
 	        	}
 	        	else {
-	        		alterarAreas();
+	        		alterarArea();
 	        	}
 	        }
 	        
 	        async function criarArea() {
-	        	const URL = `/api/areas`;
+	        	const URL = `/mackenzie/areas`;
 	        	const dadosAreas = {
 	        		'nome': txtNome.value
 	        	};
@@ -137,16 +137,16 @@
 	        		.catch(function(error) { paragrafoMensagem.innerHTML = 'Erro ao criar nova área (código ' + error.message + ')'; } );
 	        }
 	        
-	        async function alterarAreas() {
+	        async function alterarArea() {
 	        	const ID = txtId.value;
-	        	const URL = `/api/areas/${ID}`;
-	        	const dadosAreas = {
+	        	const URL = `/mackenzie/areas/${ID}`;
+	        	const dadosArea = {
 	        		'id': ID,
 	        		'nome': txtNome.value
 	        	};
 	        	const putRequest = {
 	        		method: 'PUT',
-	        		body: JSON.stringify(dadosAreas),
+	        		body: JSON.stringify(dadosArea),
 	        		headers: { 'Content-type': 'application/json' }
 	        	};
 	        	fetch(URL, putRequest)
@@ -160,9 +160,9 @@
 	        	inicializar();
 	        }
 	        
-	        async function apagarAreas() {
+	        async function apagarArea() {
 	        	const ID = txtId.value;
-	        	const URL = `/api/areas/${ID}`;
+	        	const URL = `/mackenzie/areas/${ID}`;
 	        	const deleteRequest = {
 	        		method: 'DELETE'
 	        	};
