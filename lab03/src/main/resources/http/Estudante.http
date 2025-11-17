@@ -1,17 +1,3 @@
-GET http://localhost:8080/mackenzie/estudantes
-###
-GET http://localhost:8080/mackenzie/estudantes/1
-###
-DELETE http://localhost:8080/mackenzie/estudantes/1
-###
-PUT http://localhost:8080/mackenzie/estudantes/1
-Content-Type: application/json
-
-{
-    "nome": "Camelo Folha",
-    "email": "cfolha@mackenzie.com"
-}
-###
 POST http://localhost:8080/mackenzie/estudantes
 Content-Type: application/json
 
@@ -42,20 +28,4 @@ Content-Type: application/json
 {
     "nome": "Rochas Compartimento",
     "email": "rcompartimento@mackenzie.com"
-}
-###
-PUT http://localhost:8080/mackenzie/estudantes/1/inscricoes
-Content-Type: application/json
-
-{
-    "dataInscricao": "2023-03-15",
-    "status": "Pendente",
-    "mensagemApresentacao": "Estou interessado nesta vaga."
-}
-###
-PUT http://localhost:8080/mackenzie/estudantes/1/areas
-Content-Type: application/json
-
-{
-    "nome": "Sequestro"
 }

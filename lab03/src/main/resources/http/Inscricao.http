@@ -1,10 +1,3 @@
-###
-GET http://localhost:8080/mackenzie/inscricoes
-###
-GET http://localhost:8080/mackenzie/inscricoes/1
-###
-DELETE http://localhost:8080/mackenzie/inscricoes/1
-###
 POST http://localhost:8080/mackenzie/inscricoes
 Content-Type: application/json
 
@@ -19,21 +12,6 @@ Content-Type: application/json
         "id": 1
     }
 }
-###
-PUT http://localhost:8080/mackenzie/inscricoes/1
-Content-Type: application/json
-{
-    "dataInscricao": "2023-05-28",
-    "status": "Confirmada",
-    "mensagemApresentacao": "Ansioso para começar!",
-    "estudante": {
-        "id": 2
-    },
-    "vagaEstagio": {
-        "id": 2
-    }
-}
-
 ###
 POST http://localhost:8080/mackenzie/inscricoes
 Content-Type: application/json
@@ -65,15 +43,6 @@ Content-Type: application/json
     "status": "Pendente",
     "mensagemApresentacao": "Ansioso para começar!"
 }
-###
-PUT http://localhost:8080/mackenzie/inscricoes
-Content-Type: application/json
-{
-    "dataInscricao": "2024-12-25",
-    "status": "Confirmada",
-    "mensagemApresentacao": "Ansioso para começar!"
-}
-
 ###
 POST http://localhost:8080/mackenzie/inscricoes
 Content-Type: application/json

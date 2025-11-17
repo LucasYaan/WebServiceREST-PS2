@@ -1,9 +1,3 @@
-GET http://localhost:8080/mackenzie/areas
-###
-GET http://localhost:8080/mackenzie/areas/3
-###
-DELETE http://localhost:8080/mackenzie/areas/3
-###
 POST http://localhost:8080/mackenzie/areas
 Content-Type: application/json
 
@@ -38,11 +32,3 @@ Content-Type: application/json
 {
     "nome": "Sequestro"
 }
-###
-PUT http://localhost:8080/mackenzie/areas/2
-Content-Type: application/json
-
-{
-    "nome": "Roubo"
-}
-###

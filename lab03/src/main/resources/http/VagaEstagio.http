@@ -1,9 +1,3 @@
-GET http://localhost:8080/mackenzie/vagas
-###
-GET http://localhost:8080/mackenzie/vagas/1
-###
-DELETE http://localhost:8080/mackenzie/vagas/1
-###
 POST http://localhost:8080/mackenzie/vagas
 Content-Type: application/json
 
@@ -14,11 +8,7 @@ Content-Type: application/json
     "ativo": true,
     "empresa": {
         "id": 1
-    },
-    "areas": {
-        "id": 1
     }
-
 }
 ###
 POST http://localhost:8080/mackenzie/vagas
@@ -69,21 +59,4 @@ Content-Type: application/json
     "descricao": "Em verdade, enviamos Noé ao seu povo, (dizendo-lhe): Admoesta o teu povo, antes que o açoite um castigo doloroso!",
     "dataPublicacao": "2005-02-14",
     "ativo": false
-}
-###
-PUT http://localhost:8080/mackenzie/vagas/1/inscricoes
-Content-Type: application/json
-
-{
-    "titulo": "Censor da Diversão",
-    "descricao": "O Daniel ficou fazendo coisa esquisita então eu, Lucas Yan, troquei por coisa sem graça.",
-    "dataPublicacao": "2025-10-31",
-    "ativo": false
-}
-###
-PUT http://localhost:8080/mackenzie/vagas/1/areas
-Content-Type: application/json
-
-{
-    "id": 1
 }
