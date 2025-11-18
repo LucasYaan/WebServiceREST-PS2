@@ -1,8 +1,9 @@
 package lab_n2.lab03;
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.Setter;
 
-
+@Getter
 @Setter
 @Entity
 public class AreaEstudante {

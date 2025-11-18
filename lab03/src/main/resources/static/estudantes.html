@@ -12,14 +12,19 @@
             <tr> <td>ID:</td> <td><input type="text" id="txtId"></td> </tr>
             <tr> <td>Nome:</td> <td><input type="text" id="txtNome"></td> </tr>
             <tr> <td>Email:</td> <td><input type="text" id="txtEmail"></td> </tr>
+			<tr> <td>Área:</td><td><input type="text" id="txtArea"></td></tr>
 
             <tr><td></td><td>
                 <input type="button" value="Novo" onclick="novoEstudante()" id="btnNovo">
                 <input type="button" value="Salvar" onclick="salvarEstudante()" id="btnSalvar">
+				<input type="button" value="Cadastrar Área" onclick="cadastrarAreaEstudante(document.getElementById('txtId').value,
+                                       document.getElementById('txtArea').value)" id="btnCadastrarArea">
                 <input type="button" value="Apagar" onclick="apagarEstudante()" id="btnApagar">
                 <input type="button" value="Cancelar" onclick="cancelarEdicao()" id="btnCancelar">
             </td></tr>
         </table> 
+		<p id="tituloAreas">Áreas de Interesse:</p>
+		<ul id="listaAreas"></ul>
         
 		<p style="font-weight:bold" id="paragrafoMensagem"></p>
 		
@@ -66,13 +71,18 @@
 	            txtId.value = '';
 	            txtNome.value = '';
 	            txtEmail.value = '';
+				txtArea.value = '';
 
 	            txtId.disabled = true;
 	            txtNome.disabled = true;
 	            txtEmail.disabled = true;
+				txtArea.disabled = true;
+				tituloAreas.style.display = "none";
+				listaAreas.innerHTML = '';
 
 	            btnNovo.disabled = false;
 	            btnSalvar.disabled = true;
+				btnCadastrarArea.disabled = true;
 	            btnApagar.disabled = true;
 	            btnCancelar.disabled = true;
 	            listarTodosEstudantes();            
@@ -110,16 +120,117 @@
 	            txtNome.value = nome;
 	            txtEmail.value = email;
 
+				areasEstudante(id);
 
 	            txtId.disabled = true;
 	            txtNome.disabled = false;
 	            txtEmail.disabled = false;
+				txtArea.disabled = false;
+				tituloAreas.style.display = "block";
 
 	            btnNovo.disabled = true;
 	            btnSalvar.disabled = false;
+				btnCadastrarArea.disabled = false;
 	            btnApagar.disabled = false;
 	            btnCancelar.disabled = false;  
 	        }
+
+			function areasEstudante(id) {
+				const urlRelacoes = `mackenzie/area-estudante/estudante/${id}`;
+				const urlAreas = `mackenzie/areas`;
+
+				Promise.all([
+					fetch(urlRelacoes).then(r => {
+						if (!r.ok) throw Error(r.status);
+						return r.json();
+					}),
+					fetch(urlAreas).then(r => {
+						if (!r.ok) throw Error(r.status);
+						return r.json();
+					})
+				])
+				.then(([relacoes, todasAsAreas]) => {
+
+					const listaCombinada = relacoes.map(r => {
+						const area = todasAsAreas.find(a => a.id === r.area.id);
+						return {
+							relacaoId: r.id,   // ID da tabela AreaEstudante
+							areaNome: area.nome
+						};
+					});
+
+					mostrarAreasDoEstudante(listaCombinada, id);
+				})
+			}
+
+			function mostrarAreasDoEstudante(areas, estudanteId) {
+				const lista = document.getElementById("listaAreas");
+				lista.innerHTML = "";
+
+				areas.forEach(item => {
+					const li = document.createElement("li");
+
+					// texto da área
+					li.textContent = item.areaNome + " ";
+
+					// botão excluir
+					const botao = document.createElement("button");
+					botao.textContent = "Excluir";
+					botao.style.marginLeft = "10px";
+					botao.onclick = () => deletarAreaEstudante(item.relacaoId, estudanteId);
+
+					li.appendChild(botao);
+					lista.appendChild(li);
+				});
+			}
+
+			function deletarAreaEstudante(relacaoId, estudanteId) {
+				const url = `/mackenzie/area-estudante/${relacaoId}`;
+
+				fetch(url, {
+					method: 'DELETE'
+				})
+				.then(response => {
+					if (!response.ok) throw Error(response.status);
+					areasEstudante(estudanteId); // atualizar lista
+				})
+				.catch(error => {
+					paragrafoMensagem.innerHTML =
+						`Erro ao deletar área do estudante (código ${error.message})`;
+				});
+			}
+
+
+
+			function cadastrarAreaEstudante(estudanteId, areaId) {
+				const url = `/mackenzie/area-estudante`;
+				if (!areaId) {
+					paragrafoMensagem.innerHTML = 'Insira um ID de área válido.';
+					return;
+				}
+
+				const dadosAreaEstudante = {
+					estudanteId: estudanteId,
+					areaId: areaId
+				};
+
+				fetch(url, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(dadosAreaEstudante)
+				})
+					.then(response => {
+						if (!response.ok) throw Error(response.status);
+						return response.json();
+					})
+					.then(() => areasEstudante(estudanteId))
+					.catch(error => {
+						paragrafoMensagem.innerHTML =
+							`Erro ao cadastrar área do estudante (código ${error.message})`;
+					});
+			}
+
+
 
 	        function novoEstudante() {
 	        	paragrafoMensagem.innerHTML = 'Preencha os dados do novo estudante...';
