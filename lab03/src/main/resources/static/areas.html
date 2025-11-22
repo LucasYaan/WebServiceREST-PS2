@@ -63,7 +63,7 @@
 	              .then(resposta => { if (!resposta.ok) throw Error(resposta.status); return resposta;}) 
 	              .then(resposta => resposta.json())
 	              .then(jsonResponse => preencherTabela(jsonResponse))
-	              .catch(function(error) { paragrafoMensagem.innerHTML = "Erro ao listar areas (código " + error.message + ")";});
+	              .catch(function(error) { paragrafoMensagem.innerHTML = "Erro ao listar áreas (código " + error.message + ")";});
 	        }
 	        
 	        
@@ -82,7 +82,7 @@
 
 	        function selecionarArea(id, nome) {
 	        	criandoNovaArea = false;
-	            paragrafoMensagem.innerHTML = 'Altere e salve os dados da Área, ou então apague o registro da Área.'
+	            paragrafoMensagem.innerHTML = 'Altere e salve os dados da área, ou então apague o registro da Área.'
 	            txtId.value = id;
 	            txtNome.value = nome;
 

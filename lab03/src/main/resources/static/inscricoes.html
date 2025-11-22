@@ -5,7 +5,198 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscrições</title>
 </head>
-<body>
-    
+<body>	
+        <h1>Gerenciamento de Inscrições</h1>
+
+        <table>    
+            <tr> <td>ID:</td> <td><input type="text" id="txtId"></td> </tr>
+            <tr> <td>Data Inscrição:</td> <td><input type="date" id="txtDataInscricao"></td> </tr>
+            <tr> <td>Mensagem Apresentação:</td> <td><input type="text" id="txtMsgApresentacao"></td> </tr>
+            <tr><td></td><td>
+                <input type="button" value="Novo" onclick="novaInscricao()" id="btnNovo">
+                <input type="button" value="Salvar" onclick="salvarInscricao()" id="btnSalvar">
+                <input type="button" value="Apagar" onclick="apagarInscricao()" id="btnApagar">
+                <input type="button" value="Cancelar" onclick="cancelarEdicao()" id="btnCancelar">
+            </td></tr>
+        </table> 
+        
+		<p style="font-weight:bold" id="paragrafoMensagem"></p>
+		
+        <table id="tabelaInscricoes">    
+            <tr> <th>ID</th> <th>Data Inscrição</th> <th>Mensagem Apresentação</th> </tr>
+            <tbody id="corpoTabelaInscricoes"> </tbody>
+        </table>
+
+        <script>
+			const tabelaInscricoes = document.querySelector('#tabelaInscricoes');
+	        const corpoTabela = document.querySelector('#corpoTabelaInscricoes');
+	        const paragrafoMensagem = document.querySelector('#paragrafoMensagem');
+	        const txtId = document.querySelector('#txtId');
+			const txtDataInscricao = document.querySelector('#txtDataInscricao');
+			const txtMsgApresentacao = document.querySelector('#txtMsgApresentacao');
+	        
+	        const btnNovo = document.querySelector('#btnNovo');
+	        const btnSalvar = document.querySelector('#btnSalvar');
+	        const btnApagar = document.querySelector('#btnApagar');
+	        const btnCancelar = document.querySelector('#btnCancelar');
+	        var criandoNovaInscricao = false;
+	        
+	        inicializar();
+
+	        function inicializar() {
+	        	criandoNovaInscricao = false;
+	            paragrafoMensagem.innerHTML = 'Pressione o botão Novo ou selecione uma inscrição da lista:'
+	            txtId.value = '';
+				txtDataInscricao.value = '';
+				txtMsgApresentacao.value = '';
+
+	            txtId.disabled = true;
+				txtDataInscricao.disabled = true;
+				txtMsgApresentacao.disabled = true;
+
+	            btnNovo.disabled = false;
+	            btnSalvar.disabled = true;
+	            btnApagar.disabled = true;
+	            btnCancelar.disabled = true;
+	            listarTodasInscricoes();            
+	        }
+
+	        async function listarTodasInscricoes() {
+	            const URL = `/mackenzie/inscricoes`;
+	            fetch(URL)
+	              .then(resposta => { if (!resposta.ok) throw Error(resposta.status); return resposta;}) 
+	              .then(resposta => resposta.json())
+	              .then(jsonResponse => preencherTabela(jsonResponse))
+	              .catch(function(error) { paragrafoMensagem.innerHTML = "Erro ao listar inscrições (código " + error.message + ")";});
+	        }
+	        
+	        
+	        function preencherTabela(inscricoes) {
+	            var linhasTabela = '';
+	            for (var i = 0; i < inscricoes.length; i++) {
+	                var f = inscricoes[i];
+	                linhasTabela += 
+					`<tr>
+						<td><a href="javascript:void(0)" onclick="selecionarInscricao('${f.id}','${f.dataInscricao}','${f.msgApresentacao}')">${f.id}</a></td>
+						<td>${f.nome}</td>
+					</tr>`;
+	            }
+	            corpoTabela.innerHTML = linhasTabela;
+	        }
+
+	        function selecionarInscricao(id, nome, dataInscricao, msgApresentacao) {
+	        	criandoNovaArea = false;
+	            paragrafoMensagem.innerHTML = 'Altere e salve os dados da inscrição, ou então apague o registro da inscrição.'
+	            txtId.value = id;
+				txtDataInscricao.value = dataInscricao;
+				txtMsgApresentacao.value = msgApresentacao;
+
+	            txtId.disabled = true;
+				txtDataInscricao.disabled = false;
+				txtMsgApresentacao.disabled = false;
+
+	            btnNovo.disabled = true;
+	            btnSalvar.disabled = false;
+	            btnApagar.disabled = false;
+	            btnCancelar.disabled = false;  
+	        }
+
+	        function novaInscricao() {
+	        	paragrafoMensagem.innerHTML = 'Preencha os dados da nova área...';
+	        	criandoNovaInscricao = true;
+	        	
+	        	txtId.value = '';
+	        	txtNome.value = '';
+	        	
+	        	txtId.disabled = true;
+	        	txtNome.disabled = false;
+	        	
+	        	btnNovo.disabled = true;
+	        	btnSalvar.disabled = false;
+	        	btnApagar.disabled = true;
+	        	btnCancelar.disabled = false;
+	        }
+	        
+	        function salvarInscricao() {
+	        	if (criandoNovaInscricao) {
+	        		criarInscricao();
+	        	}
+	        	else {
+	        		alterarInscricao();
+	        	}
+	        }
+	        
+	        async function criarInscricao() {
+	        	const URL = `/mackenzie/inscricoes`;
+	        	const dadosInscricoes = {
+	        		'dataInscricao': txtDataInscricao.value,
+					'msgApresentacao': txtMsgApresentacao.value
+	        	};
+	        	const postRequest = {
+	        		method: 'POST',
+	        		body: JSON.stringify(dadosInscricoes),
+	        		headers: { 'Content-type': 'application/json' }
+	        	};
+	        	fetch(URL, postRequest)
+	        		.then(resposta => { if (!resposta.ok) throw Error(resposta.status); return resposta; } )
+	        		.then(resposta => resposta.json())
+	        		.then(jsonResponse => inicializar())
+	        		.catch(function(error) { paragrafoMensagem.innerHTML = 'Erro ao criar nova inscrição (código ' + error.message + ')'; } );
+	        }
+	        
+	        async function alterarInscricao() {
+	        	const ID = txtId.value;
+	        	const URL = `/mackenzie/inscricoes/${ID}`;
+	        	const dadosInscricao = {
+	        		'id': ID,
+					'dataInscricao': txtDataInscricao.value,
+					'msgApresentacao': txtMsgApresentacao.value
+	        	};
+	        	const putRequest = {
+	        		method: 'PUT',
+	        		body: JSON.stringify(dadosInscricao),
+	        		headers: { 'Content-type': 'application/json' }
+	        	};
+	        	fetch(URL, putRequest)
+	        		.then(resposta => { if (!resposta.ok) throw Error(resposta.status); return resposta; } )
+	        		.then(resposta => resposta.json())
+	        		.then(jsonResponse => inicializar())
+	        		.catch(function(error) { paragrafoMensagem.innerHTML = 'Erro ao alterar inscrição (código ' + error.message + ')'; } );	        	
+	        }
+	        
+	        function cancelarEdicao() {
+	        	inicializar();
+	        }
+	        
+	        async function apagarInscricao() {
+	        	const ID = txtId.value;
+	        	const URL = `/mackenzie/inscricoes/${ID}`;
+	        	const deleteRequest = {
+	        		method: 'DELETE'
+	        	};
+	        	fetch(URL, deleteRequest)
+	        		.then(resposta => { if (!resposta.ok) throw Error(resposta.status); return resposta; } )
+	        		.then(resposta => inicializar())
+	        		.catch(function(error) { paragrafoMensagem.innerHTML = 'Erro ao apagar inscrição (código ' + error.message + ')'; } );	        		
+	        }
+	        
+	    </script>   
+
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 20px;
+				height: 100vh;
+				box-sizing: border-box;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+			th, tr, td {
+				padding: 8px;
+				text-align: left;    
+			}
+		</style>
 </body>
 </html>

@@ -13,18 +13,27 @@
             <tr> <td>Nome:</td> <td><input type="text" id="txtNome"></td> </tr>
             <tr> <td>Email:</td> <td><input type="text" id="txtEmail"></td> </tr>
 			<tr> <td>Área:</td><td><input type="text" id="txtArea"></td></tr>
+			<tr> <td>Inscrição:</td><td><input type="text" id="txtInscricao"></td></tr>
 
             <tr><td></td><td>
                 <input type="button" value="Novo" onclick="novoEstudante()" id="btnNovo">
                 <input type="button" value="Salvar" onclick="salvarEstudante()" id="btnSalvar">
-				<input type="button" value="Cadastrar Área" onclick="cadastrarAreaEstudante(document.getElementById('txtId').value,
-                                       document.getElementById('txtArea').value)" id="btnCadastrarArea">
+				<input type="button" value="Cadastrar Área" onclick="cadastrarAreaEstudante(
+					document.getElementById('txtId').value,
+                    document.getElementById('txtArea').value
+				)" id="btnCadastrarArea">
+				<input type="button" value="Cadastrar Inscrição" onclick="cadastrarInscricao(
+					document.getElementById('txtId').value,
+                    document.getElementById('txtInscricao').value
+				)" id="btnCadastrarInscricao">
                 <input type="button" value="Apagar" onclick="apagarEstudante()" id="btnApagar">
                 <input type="button" value="Cancelar" onclick="cancelarEdicao()" id="btnCancelar">
             </td></tr>
         </table> 
-		<p id="tituloAreas">Áreas de Interesse:</p>
-		<ul id="listaAreas"></ul>
+		<h4 id="tituloAreas" style="display: none;">Áreas de Interesse:</h4>
+		<ul id="listaAreas" style="display: none;">Inscrições</ul>
+		<h4 id="tituloInscricoes">Inscrições:</h4>
+		<ul id="listaInscricoes"></ul>
         
 		<p style="font-weight:bold" id="paragrafoMensagem"></p>
 		
@@ -33,29 +42,20 @@
             <tbody id="corpoTabelaEstudantes"> </tbody>
         </table>
 
-		<style>
-			body {
-				font-family: Arial, sans-serif;
-				margin: 20px;
-				height: 100vh;
-				box-sizing: border-box;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-			}
-			th, tr, td {
-				padding: 8px;
-				text-align: left;    
-			}
-		</style>
-
         <script>
 	        const corpoTabela = document.querySelector('#corpoTabelaEstudantes');
 	        const paragrafoMensagem = document.querySelector('#paragrafoMensagem');
 	        const txtId = document.querySelector('#txtId');
 	        const txtNome = document.querySelector('#txtNome');
 	        const txtEmail = document.querySelector('#txtEmail');
+
+			const txtArea = document.querySelector('#txtArea');
+			const txtInscricao = document.querySelector('#txtInscricao');
+			
+			const tituloAreas = document.querySelector('#tituloAreas');
+			const listaAreas = document.querySelector('#listaAreas');
+			const tituloInscricoes = document.querySelector('#tituloInscricoes');
+			const listaInscricoes = document.querySelector('#listaInscricoes');
 	        
 	        const btnNovo = document.querySelector('#btnNovo');
 	        const btnSalvar = document.querySelector('#btnSalvar');
@@ -72,6 +72,7 @@
 	            txtNome.value = '';
 	            txtEmail.value = '';
 				txtArea.value = '';
+				txtInscricao.value = '';
 
 	            txtId.disabled = true;
 	            txtNome.disabled = true;
@@ -79,6 +80,8 @@
 				txtArea.disabled = true;
 				tituloAreas.style.display = "none";
 				listaAreas.innerHTML = '';
+				tituloInscricoes.style.display = "none";
+				listaInscricoes.innerHTML = '';
 
 	            btnNovo.disabled = false;
 	            btnSalvar.disabled = true;
@@ -105,7 +108,7 @@
 	                var f = estudantes[i];
 	                linhasTabela += 
 	                `<tr>
-						<td><a href="javascript:void(0)" onclick="selecionarEstudante('${f.id}','${f.nome}', '${f.email}')">${f.id}</a></td>
+						<td><a href="javascript:void(0)" onclick="selecionarEstudante('${f.id}', '${f.nome}', '${f.email}')">${f.id}</a></td>
 						<td>${f.nome}</td>
 						<td>${f.email}</td>
 					</tr>`;
@@ -127,12 +130,16 @@
 	            txtEmail.disabled = false;
 				txtArea.disabled = false;
 				tituloAreas.style.display = "block";
+				tituloInscricoes.style.display = "block";
 
 	            btnNovo.disabled = true;
 	            btnSalvar.disabled = false;
 				btnCadastrarArea.disabled = false;
 	            btnApagar.disabled = false;
-	            btnCancelar.disabled = false;  
+	            btnCancelar.disabled = false; 
+				
+				areasEstudante(id);
+				inscricoesEstudante(id);
 	        }
 
 			function areasEstudante(id) {
@@ -243,6 +250,8 @@
 	        	txtId.disabled = true;
 	        	txtNome.disabled = false;
 	        	txtEmail.disabled = false;
+				txtArea.disabled = true;
+				txtInscricao.disabled = true;
 	        	
 	        	btnNovo.disabled = true;
 	        	btnSalvar.disabled = false;
@@ -313,7 +322,79 @@
 	        		.then(resposta => inicializar())
 	        		.catch(function(error) { paragrafoMensagem.innerHTML = 'Erro ao apagar estudante (código ' + error.message + ')'; } );	        		
 	        }
+
+			function inscricoesEstudante(id) {
+				const urlRelacoes = `/mackenzie/inscricao-estudante/estudante/${id}`;
+				const urlInscricoes = `/mackenzie/inscricoes`;
+
+				Promise.all([
+				fetch(urlRelacoes).then(r => { if (!r.ok) throw Error(r.status); return r.json(); }),
+				fetch(urlInscricoes).then(r => { if (!r.ok) throw Error(r.status); return r.json(); })
+				])
+				.then(([relacoes, todas]) => {
+				// relacoes: array de InscricaoEstudante com campo 'inscricao'
+				const listaCombinada = relacoes.map(r => {
+					const inscr = todas.find(i => i.id === r.inscricao.id) || r.inscricao;
+					return { relacaoId: r.id, inscricaoId: inscr.id, inscricaoNome: inscr.nome || inscr.titulo || ('Inscrição ' + inscr.id) };
+				});
+				mostrarInscricoesDoEstudante(listaCombinada, id);
+				})
+				.catch(err => paragrafoMensagem.innerHTML = 'Erro ao carregar inscrições (cód ' + err.message + ')');
+			}
+
+			function mostrarInscricoesDoEstudante(inscricoes, estudanteId) {
+				listaInscricoes.innerHTML = "";
+				inscricoes.forEach(item => {
+				const li = document.createElement("li");
+				li.textContent = `${item.inscricaoNome} (ID:${item.inscricaoId}) `;
+
+				const botao = document.createElement("button");
+				botao.textContent = "Excluir";
+				botao.style.marginLeft = "10px";
+				botao.onclick = () => deletarInscricaoEstudante(item.relacaoId, estudanteId);
+
+				li.appendChild(botao);
+				listaInscricoes.appendChild(li);
+				});
+			}
+
+			function deletarInscricaoEstudante(relacaoId, estudanteId) {
+				const url = `/mackenzie/inscricao-estudante/${relacaoId}`;
+				fetch(url, { method: 'DELETE' })
+				.then(r => { if (!r.ok) throw Error(r.status); inscricoesEstudante(estudanteId); })
+				.catch(err => paragrafoMensagem.innerHTML = `Erro ao deletar inscrição do estudante (código ${err.message})`);
+			}
+
+			function cadastrarInscricao(estudanteId, inscricaoId) {
+				if (!estudanteId) { paragrafoMensagem.innerHTML = 'Selecione um estudante antes.'; return; }
+				if (!inscricaoId) { paragrafoMensagem.innerHTML = 'Insira um ID de inscrição válido.'; return; }
+
+				const url = `/mackenzie/inscricao-estudante`;
+				const dados = { estudanteId: estudanteId, inscricaoId: inscricaoId };
+
+				fetch(url, { method: 'POST', headers:{'Content-type':'application/json'}, body: JSON.stringify(dados) })
+				.then(res => { if (!res.ok) throw Error(res.status); return res.json(); })
+				.then(json => inscricoesEstudante(estudanteId))
+				.catch(err => paragrafoMensagem.innerHTML = `Erro ao cadastrar inscrição (código ${err.message})`);
+			}
 	        
 	    </script>   
-</body>
+
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 20px;
+				height: 100vh;
+				box-sizing: border-box;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+			th, tr, td {
+				padding: 8px;
+				text-align: left;    
+			}
+		</style>
+	</body>
 </html>
