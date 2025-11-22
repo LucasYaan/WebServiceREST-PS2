@@ -1,7 +1,12 @@
-package lab_n2.lab03;
+package lab_n2.lab03.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import lab_n2.lab03.model.Area;
+import lab_n2.lab03.model.Estudante;
+import lab_n2.lab03.model.Inscricao;
+import lab_n2.lab03.repos.EstudanteRepo;
 
 @RestController
 public class EstudanteController {

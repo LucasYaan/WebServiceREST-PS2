@@ -5,6 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lab_n2.lab03.model.Area;
+import lab_n2.lab03.model.Estudante;
+import lab_n2.lab03.repos.AreaEstudante;
+import lab_n2.lab03.repos.AreaEstudanteRepo;
+import lab_n2.lab03.repos.AreaRepo;
+import lab_n2.lab03.repos.EstudanteRepo;
+
 @Service
 public class AreaEstudanteService {
     @Autowired

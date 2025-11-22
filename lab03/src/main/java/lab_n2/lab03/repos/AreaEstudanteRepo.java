@@ -1,4 +1,4 @@
-package lab_n2.lab03;
+package lab_n2.lab03.repos;
 
 import java.util.List;
 

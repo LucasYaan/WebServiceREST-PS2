@@ -1,4 +1,4 @@
-package lab_n2.lab03;
+package lab_n2.lab03.controllers;
 
 import java.util.List;
 
@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import lab_n2.lab03.AreaEstudanteRequest;
+import lab_n2.lab03.AreaEstudanteService;
+import lab_n2.lab03.repos.AreaEstudante;
 
 @RestController
 @RequestMapping("mackenzie/area-estudante")

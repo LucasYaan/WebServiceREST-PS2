@@ -1,7 +1,11 @@
-package lab_n2.lab03;
+package lab_n2.lab03.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import lab_n2.lab03.model.Empresa;
+import lab_n2.lab03.model.VagaEstagio;
+import lab_n2.lab03.repos.EmpresaRepo;
 
 
 @RestController

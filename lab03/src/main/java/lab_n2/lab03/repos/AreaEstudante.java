@@ -1,5 +1,7 @@
-package lab_n2.lab03;
+package lab_n2.lab03.repos;
 import jakarta.persistence.*;
+import lab_n2.lab03.model.Area;
+import lab_n2.lab03.model.Estudante;
 import lombok.Getter;
 import lombok.Setter;
 
